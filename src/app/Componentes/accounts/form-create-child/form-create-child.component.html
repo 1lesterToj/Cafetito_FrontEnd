@@ -1,0 +1,55 @@
+<div class="col align-self-center">
+    <form>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="nitproductor">NIT del productor</label>
+                    <input type="text" class="form-control" id="nitproductor" placeholder="Ingrese el NIT del productor"
+                        required [(ngModel)]="nitProductor" [ngModelOptions]="{standalone: true}" [disabled]="disabled">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="cantidadParcialidades">Cantidad de Parcialidades</label>
+                    <input type="number" class="form-control" id="cantidadParcialidades"
+                        placeholder="Ingrese Parcialidad" required [(ngModel)]="cantidadParcialidades"
+                        [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+
+                <div class="form-group">
+                    <label for="pesajetotal">Peso total</label>
+                    <input type="number" class="form-control" id="pesajetotal" placeholder="Ingrese el peso total"
+                        required [(ngModel)]="pesajeTotalKg" [ngModelOptions]="{standalone: true}">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="tipocafe">Tipo de café</label>
+                    <select class="form-control" id="tipocafe" required [(ngModel)]="tipoCafe"
+                        [ngModelOptions]="{standalone: true}" [ngModelOptions]="{standalone: true}">
+                        <option value="">Seleccione el tipo de café</option>
+                        <option value="cafe1">Café 1</option>
+                        <option value="cafe2">Café 2</option>
+                        <option value="cafe3">Café 3</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mt-2 text-center">
+                <button (click)="saveAccount()" type="submit" class="btn btn-primary mx-2">Guardar</button>
+                <button (click)="cleanInput()" type="submit" class="btn btn-danger">Limpiar</button>
+            </div>
+        </div>
+    </form>
+    
+</div>
+
+<hr style="border-width: 2px;">
+
+<app-generic-table [tableColumns]="tableCols" [headerText]="hText" [parentComp]="'sb-charts'" [tableData]="tableData"
+    *ngIf="viewTable"></app-generic-table>

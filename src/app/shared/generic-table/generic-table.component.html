@@ -1,0 +1,25 @@
+<!-- Tabla Generica -->
+<div class="table-responsive my-5">
+    <table mat-table [dataSource]="tableDataSrc" matSort matSortDisabled style="width: 100%" class="table table-bordered">
+        <ng-container *ngFor="let col of tableCols; index as i">
+            <ng-container matColumnDef="{{ col }}">
+                <!-- Titulo de columnas para bandeja revisor-->
+                <div *ngIf="parentComp === 'sb-charts' || parentComp === 'cancDefJuridica'">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-dark text-uppercase">{{ headerText[i]}}</th>
+                </div>
+                <td mat-cell *matCellDef="let profile" class="text-center bg-white" style="color:black">{{ profile[col] }}
+
+                    <div *ngIf="col === 'accionParcialidad'">
+                        <section class="example-section">
+                            <button (click)="saveParcialidad(profile['numerocuenta'], profile['nit_productor'])" type="button" class="btn btn-dark mt-1">Agregar Parcialidad</button>
+                        </section>
+                    </div>
+
+                </td>
+            </ng-container>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="tableCols"></tr>
+        <tr mat-row *matRowDef="let row; columns: tableCols;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
+</div>

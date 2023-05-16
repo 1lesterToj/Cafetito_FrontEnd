@@ -1,0 +1,17 @@
+body {
+  background: white;
+  background: linear-gradient(to right, white, #783f04);
+}
+
+.card-img-left {
+  width: 45%;
+  /* Link to your background image using in the property below! */
+  background: scroll center url('https://cdn.create.vista.com/api/media/medium/42895209/stock-vector-morning-coffee-vector-set?token=');
+  background-size: cover;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}

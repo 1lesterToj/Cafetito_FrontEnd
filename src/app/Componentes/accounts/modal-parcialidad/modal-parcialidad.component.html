@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Parcialidad</h1>
+<hr>
+<form>
+    <div class="form-group">
+        <label for="licenciaTransportista">Licencia Transportista</label>
+        <input type="text" class="form-control" id="licenciaTransportista" [(ngModel)]="licenciaTransportista"
+            name="licenciaTransportista">
+    </div>
+    <div class="form-group">
+        <label for="placaTransporte">Placa Transporte</label>
+        <input type="text" class="form-control" id="placaTransporte" [(ngModel)]="placaTransporte"
+            name="placaTransporte">
+    </div>
+    <div class="form-group">
+        <label for="pesoParcialidad">Peso Parcialidad</label>
+        <input type="number" class="form-control" id="pesoParcialidad" [(ngModel)]="pesoParcialidad"
+            name="pesoParcialidad">
+    </div>
+    <div class="row mt-2">
+        <div class="col text-center">
+            <button (click)="saveParcialidad()" type="submit" class="btn btn-primary mx-2">Enviar</button>
+            <button (click)="closeDialog()" type="submit" class="btn btn-danger mx-2">Cancelar</button>
+            <button (click)="clearFormulario()" type="submit" class="btn btn-warning mx-2">Limpiar</button>
+        </div>
+    </div>
+</form>

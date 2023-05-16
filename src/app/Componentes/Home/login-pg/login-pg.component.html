@@ -1,0 +1,73 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                    <div class="card-img-left d-none d-md-flex">
+                        <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 fw-light fs-5">Iniciar Sesión</h5>
+                        <form>
+
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInputUsername"
+                                    placeholder="myusername" [(ngModel)]="username"
+                                    [ngModelOptions]="{standalone: true}" required autofocus>
+                                <label for="floatingInputUsername">Usuario</label>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                    [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                                <label for="floatingPassword">Contraseña</label>
+                            </div>
+
+                            <div class="d-grid mb-2">
+                                <button class="btn btn-lg btn-success btn-login fw-bold text-uppercase"
+                                    type="submit" (click)="login()">Iniciar Sesión</button>
+                            </div>
+
+                            <hr class="my-4">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </div>
+    </div>
+
+</body>
+
+
+<!-- <div class="bg-danger">
+    <div class="container">
+        <div class="abs-center">
+            <div class="py-5 row mi-div">
+                <div class="col-sm-6">
+                    <img src="./../../../../assets/img/fondo_login.jpeg" class="img-fluid zoom-image" alt="imagen_login"
+                        width="auto">
+                </div>
+                <div class="col mt-2 align-self-center">
+                    <div class="col mx-5">
+                        <form class="form-signin">
+                            <h1 class="h3 mb-3 font-weight-normal text-center">Iniciar sesión</h1>
+                            <label for="inputUsername" class="sr-only mt-2">Nombre de usuario</label>
+                            <input type="text" id="inputUsername" class="form-control mt-2"
+                                placeholder="Nombre de usuario" required [(ngModel)]="username"
+                                [ngModelOptions]="{standalone: true}">
+                            <label for="inputPassword" class="sr-only mt-2">Contraseña</label>
+                            <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Contraseña"
+                                required [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                            <button class="btn btn-lg btn-dark btn-block mt-2" type="submit"
+                                (click)="login()">Iniciar
+                                sesión</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
