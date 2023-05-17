@@ -44,7 +44,13 @@ export class FormCreateChildComponent implements OnInit {
         this.cleanInput();
       })
       .catch(err => {
-        this.notificaciones.notificacionGenerica('Error', 'info');
+        if (err != null) {
+          if (err.error.status === 404) {
+            this.notificaciones.notificacionGenerica(err.error.message, 'info');
+          } else {
+            this.notificaciones.notificacionGenerica("ERROR DESCONOCIDO", 'error');
+          }
+        }
 
       })
   }

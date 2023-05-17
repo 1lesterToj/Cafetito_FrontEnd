@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -30,7 +30,8 @@ export class GeneralServiceService {
   }
 
   saveData(data: any) {
-    return this.http.post<any>(URL_CUENTA + '/creacionCuenta', data);
+    return this.http.post<any>(`${URL_CUENTA}/creacionCuenta`, data,
+      this.generateHeaders(true));
   };
 
   dataAccount(data: any) {
@@ -45,5 +46,26 @@ export class GeneralServiceService {
     return this.http.post<any>(ULR_PARCIALIDADES + '/EnvioParcialidad', data)
   };
 
+  /**
+     * funcion para crear el headers que se enviara en los servicios
+     * @param json agrega si el contenido sera de tipo json
+     * @author cesalgue carlos salguero
+     */
+  public generateHeaders(json: boolean = false): object {
+    let headers: HttpHeaders;
+    if (json) {
+      headers = new HttpHeaders({
+        'Accept': '*/*',
+        'Content-Type': 'application/json'
+      });
+    } else {
+      headers = new HttpHeaders({
+        'Accept': '*/*'
+      });
+    }
+    // console.log('header a enviar:', JSON.stringify(headers));
+    let httpOptions: object = { "headers": headers };
+    return httpOptions;
+  }
 
 }

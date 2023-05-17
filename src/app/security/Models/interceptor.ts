@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Observable, catchError, throwError, of } from 'rxjs';
 import { error } from 'console';
 import { GenericNotification } from 'src/app/shared/notificaciones';
 
@@ -11,7 +11,7 @@ export class YourInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log("*****INTERCEPTOR********", req);
+        //console.log("*****INTERCEPTOR********", req);
         //const authToken: string = window.localStorage.getItem("accessToken");
         const token = localStorage.getItem('accessToken')!;
         const requestClone = req.clone(
@@ -19,10 +19,13 @@ export class YourInterceptor implements HttpInterceptor {
                 headers: req.headers.set('Authorization', `Bearer ${token}`)
             }
         );
-        return next.handle(requestClone).pipe(catchError((error) => this.herrorHandler(error)));
+        return next.handle(requestClone).pipe(
+            catchError(
+                (error) => this.herrorHandler(error)
+            ));
     }
 
-    herrorHandler(error: HttpErrorResponse): Observable<never> {
+    herrorHandler(error: HttpErrorResponse): Observable<any> {
         if (error instanceof HttpErrorResponse) {
             if (error.error instanceof ErrorEvent) {
                 console.log('ERROR DE CLIENTE');
@@ -35,7 +38,13 @@ export class YourInterceptor implements HttpInterceptor {
                     this.notificaciones.notificacionGenerica("EL USUARIO NO POSEE PERMISOS NECESARIOS", "warning");
 
                 } else if (error.status === 404) {
-                    this.notificaciones.notificacionGenerica(error.error, "warning");
+                    if (error.error.message === 'Not found' && error.error.exception) {
+                        let temp = JSON.parse(error.error.exception);
+                        return of(new HttpResponse({ status: 200, body: { json: temp } }));
+                      } else {
+                        return throwError(error);
+                        //return EMPTY;
+                      }
                 } else {
                     this.notificaciones.notificacionGenerica("ERROR DE SERVIDOR", "error");
                 }
