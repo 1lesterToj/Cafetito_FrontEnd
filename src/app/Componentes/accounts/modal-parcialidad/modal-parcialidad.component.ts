@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { firstValueFrom } from 'rxjs';
 import { GeneralServiceService } from 'src/app/Core/services/general-service.service';
 import { GenericNotification } from 'src/app/shared/notificaciones';
 
@@ -16,6 +17,12 @@ export class ModalParcialidadComponent implements OnInit {
   pesoParcialidad!: number;
   jsonTemporal!: any;
 
+  viewSpinner: boolean = true;
+  viewTable: boolean = false;
+  tableCols: string[] = ['contador', 'licenciaT', 'placaT', 'pesoP'];//variables tabla operador
+  hText: string[] = ['ID.', 'Licencia transportista', 'Placa transporte', 'Peso Parcialidad'];//encabezado tabla operador
+  tableData: {}[] = [{}];
+
   constructor(
     private servicio: GeneralServiceService,
     private notificaciones: GenericNotification,
@@ -26,6 +33,7 @@ export class ModalParcialidadComponent implements OnInit {
   ngOnInit(): void {
     console.log("DATOS DEL COMPONENTE ANTERIOR: ", this.dialogRef.componentInstance.data)
     this.jsonTemporal = this.dialogRef.componentInstance.data;
+    this.getParcialidadesTable();
   }
 
 
@@ -42,7 +50,9 @@ export class ModalParcialidadComponent implements OnInit {
       pesoParcialidad: this.pesoParcialidad,
       usuarioOpera: localStorage.getItem('usuario'),
     };
-    await this.servicio.saveParcialidad(jsonEnviar).toPromise()
+
+    const sendData$ = this.servicio.saveParcialidad(jsonEnviar);
+    await firstValueFrom(sendData$)
       .then(async res => {
         await this.notificaciones.notificacionGenerica('PARCIALIDAD CREADA EXITOSAMENTE', 'success');
         this.clearFormulario();
@@ -56,6 +66,33 @@ export class ModalParcialidadComponent implements OnInit {
     this.licenciaTransportista = '';
     this.placaTransporte = '';
     this.pesoParcialidad = 0;
+  }
+
+  async getParcialidadesTable() {
+    let objetoTemp = {
+      noCuenta: this.jsonTemporal.numeroCuenta
+    };
+    const getData$ = this.servicio.getParcialidades(objetoTemp);
+    await firstValueFrom(getData$)
+      .then(res => {
+        let parcialidadLista: any = [];
+        res.data.forEach(async (element: any) => {
+          await parcialidadLista.push({
+            contador: element.idParcialidad,
+            licenciaT: element.licenciaTransportista,
+            placaT: element.noPlacaTransporte,
+            pesoP: element.pesoParcialidadKg
+          })
+          this.tableData = parcialidadLista;
+        });
+        console.log(this.tableData)
+        this.viewTable = true;
+        this.viewSpinner = false;
+      })
+      .catch(err => {
+        this.viewSpinner = false;
+
+      });
   }
 
 }

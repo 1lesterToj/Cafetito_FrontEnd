@@ -1,4 +1,21 @@
+<div *ngIf="viewSpinner" class="row">
+    <app-generic-spinner></app-generic-spinner>
+</div>
+
 <h1 mat-dialog-title>Parcialidad</h1>
+<hr>
+<div class="row">
+    <div class="row">
+        <div class="col text-center">
+            <label for=""><strong>Número de cuenta: </strong></label> {{jsonTemporal.numeroCuenta}}
+        </div>
+    </div>
+    <div class="my-2 row">
+        <div class="col text-center">
+            <label for=""><strong>NIT del productor: </strong></label> {{jsonTemporal.nitProductor}}
+        </div>
+    </div>
+</div>
 <hr>
 <form>
     <div class="form-group">
@@ -18,9 +35,12 @@
     </div>
     <div class="row mt-2">
         <div class="col text-center">
-            <button (click)="saveParcialidad()" type="submit" class="btn btn-primary mx-2">Enviar</button>
-            <button (click)="closeDialog()" type="submit" class="btn btn-danger mx-2">Cancelar</button>
-            <button (click)="clearFormulario()" type="submit" class="btn btn-warning mx-2">Limpiar</button>
+            <button (click)="saveParcialidad()" type="submit" class="btn btn-primary mx-2 my-2">Enviar</button>
+            <button (click)="closeDialog()" type="submit" class="btn btn-danger mx-2 my-2">Cancelar</button>
+            <button (click)="clearFormulario()" type="submit" class="btn btn-warning mx-2 my-2">Limpiar</button>
         </div>
     </div>
 </form>
+<hr>
+<app-generic-table [tableColumns]="tableCols" [headerText]="hText" [parentComp]="'app-parent-account'"
+    [tableData]="tableData" *ngIf="viewTable"></app-generic-table>

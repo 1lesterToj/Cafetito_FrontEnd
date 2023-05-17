@@ -25,6 +25,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalParcialidadComponent } from './Componentes/accounts/modal-parcialidad/modal-parcialidad.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GenericSpinnerComponent } from './shared/generic-spinner/generic-spinner.component';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { ModalParcialidadComponent } from './Componentes/accounts/modal-parciali
     GenericTableComponent,
     ParentAccountComponent,
     FormCreateChildComponent,
-    ModalParcialidadComponent
+    ModalParcialidadComponent,
+    GenericSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,9 @@ import { ModalParcialidadComponent } from './Componentes/accounts/modal-parciali
     MatSortModule,
     FormsModule,
     MatDialogModule,
+    MatProgressSpinnerModule
+ 
+
   ],
   providers: [
     VariableGlobal,

@@ -4,7 +4,7 @@
         <ng-container *ngFor="let col of tableCols; index as i">
             <ng-container matColumnDef="{{ col }}">
                 <!-- Titulo de columnas para bandeja revisor-->
-                <div *ngIf="parentComp === 'sb-charts' || parentComp === 'cancDefJuridica'">
+                <div *ngIf="parentComp === 'sb-charts' || parentComp === 'app-parent-account'">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-dark text-uppercase">{{ headerText[i]}}</th>
                 </div>
                 <td mat-cell *matCellDef="let profile" class="text-center bg-white" style="color:black">{{ profile[col] }}

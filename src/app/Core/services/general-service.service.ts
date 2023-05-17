@@ -46,11 +46,11 @@ export class GeneralServiceService {
     return this.http.post<any>(ULR_PARCIALIDADES + '/EnvioParcialidad', data)
   };
 
-  /**
-     * funcion para crear el headers que se enviara en los servicios
-     * @param json agrega si el contenido sera de tipo json
-     * @author cesalgue carlos salguero
-     */
+  getParcialidades(data: any) {
+    return this.http.post<any>(`${ULR_PARCIALIDADES}/consultaParcialidad`, data,
+      this.generateHeaders(true));
+  };
+
   public generateHeaders(json: boolean = false): object {
     let headers: HttpHeaders;
     if (json) {

@@ -1,4 +1,8 @@
-<div class="col align-self-center">
+<div *ngIf="!viewTable"  class="row">
+   <app-generic-spinner></app-generic-spinner>
+</div>
+
+<div *ngIf="viewTable" class="col align-self-center">
     <form>
         <div class="row">
             <div class="col">
