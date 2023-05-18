@@ -43,15 +43,8 @@ export class FormCreateChildComponent implements OnInit {
         await this.notificaciones.notificacionGenerica('Cuenta Creada', 'success');
         this.cleanInput();
       })
-      .catch(err => {
-        if (err != null) {
-          if (err.error.status === 404) {
-            this.notificaciones.notificacionGenerica(err.error.message, 'info');
-          } else {
-            this.notificaciones.notificacionGenerica("ERROR DESCONOCIDO", 'error');
-          }
-        }
-
+      .catch(async err => {
+        await this.notificaciones.errorControlado(err);
       })
   }
 
@@ -91,13 +84,12 @@ export class FormCreateChildComponent implements OnInit {
             this.viewTable = true;
 
           })
-          .catch(error => {
-            console.log(error)
+          .catch(async err => {
+            await this.notificaciones.errorControlado(err);
           });
-
       })
-      .catch(err => {
-        this.notificaciones.notificacionGenerica('Error', 'info');
+      .catch(async err => {
+        await this.notificaciones.errorControlado(err);
       })
   }
 

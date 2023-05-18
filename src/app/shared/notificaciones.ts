@@ -22,12 +22,23 @@ export class GenericNotification {
         })
     }
 
-    public async notificacionSuccess(){
+    public async notificacionSuccess() {
         await Swal.fire({
             title: 'Bienvenido',
             icon: 'success',
             confirmButtonColor: '#a18262',
             confirmButtonText: 'Aceptar'
-          });
+        });
     }
+
+    async errorControlado(err: any) {
+        if (err != null) {
+            if (err.error.status === 404) {
+                await this.notificacionGenerica(err.error.message, 'info');
+            } else {
+                await this.notificacionGenerica("ERROR DESCONOCIDO", 'error');
+            }
+        }
+    }
+    
 }

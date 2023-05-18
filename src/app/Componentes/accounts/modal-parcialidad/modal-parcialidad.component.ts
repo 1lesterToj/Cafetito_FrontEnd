@@ -42,24 +42,44 @@ export class ModalParcialidadComponent implements OnInit {
   }
 
   async saveParcialidad() {
-    const jsonEnviar = {
-      noCuenta: this.jsonTemporal.numeroCuenta,
-      nitProductor: this.jsonTemporal.nitProductor,
+    this.viewTable = false;
+    let jsonLicencia = {
       licenciaTransportista: this.licenciaTransportista,
-      placaTransporte: this.placaTransporte,
-      pesoParcialidad: this.pesoParcialidad,
-      usuarioOpera: localStorage.getItem('usuario'),
+      placaTransporte: this.placaTransporte
     };
-
-    const sendData$ = this.servicio.saveParcialidad(jsonEnviar);
-    await firstValueFrom(sendData$)
+    console.log("json licencia", jsonLicencia);
+    const validacionLicencia$ = this.servicio.getValidacionLicencia(jsonLicencia);
+    await firstValueFrom(validacionLicencia$)
       .then(async res => {
-        await this.notificaciones.notificacionGenerica('PARCIALIDAD CREADA EXITOSAMENTE', 'success');
-        this.clearFormulario();
-      })
-      .catch(err => {
+        const jsonEnviar = {
+          noCuenta: this.jsonTemporal.numeroCuenta,
+          nitProductor: this.jsonTemporal.nitProductor,
+          licenciaTransportista: this.licenciaTransportista,
+          placaTransporte: this.placaTransporte,
+          pesoParcialidad: this.pesoParcialidad,
+          usuarioOpera: localStorage.getItem('usuario'),
+        };
 
-      });
+        const sendData$ = this.servicio.saveParcialidad(jsonEnviar);
+        await firstValueFrom(sendData$)
+          .then(async res => {
+            await this.notificaciones.notificacionGenerica('PARCIALIDAD CREADA EXITOSAMENTE', 'success');
+            this.clearFormulario();
+            setTimeout(async () => {
+              await this.getParcialidadesTable();
+              this.viewTable = true;
+            }, 1000);
+
+
+          })
+          .catch(async err => {
+            await this.notificaciones.errorControlado(err);
+          });
+      })
+      .catch(async err => {
+        //await this.errorControlado(err);
+        await this.notificaciones.errorControlado(err);
+      })
   }
 
   clearFormulario() {

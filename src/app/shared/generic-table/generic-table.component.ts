@@ -96,8 +96,8 @@ export class GenericTableComponent implements OnInit {
   saveParcialidad(numeroCuenta: string, nitProductor: string) {
     console.log("Data>>>>>", numeroCuenta, nitProductor);
     const abrirDialogo = this.dialog.open(ModalParcialidadComponent, {
-      height: 'auto',
-      width: 'auto',
+      height: '720px',
+      width: '550px',
       data: {
         numeroCuenta: numeroCuenta,
         nitProductor: nitProductor
