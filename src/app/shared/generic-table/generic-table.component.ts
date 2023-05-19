@@ -6,6 +6,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalParcialidadComponent } from 'src/app/Componentes/accounts/modal-parcialidad/modal-parcialidad.component';
+import { ModalAccionComponent } from 'src/app/Componentes/Cafetito/modal-accion/modal-accion.component';
 
 @Component({
   selector: 'app-generic-table',
@@ -101,6 +102,25 @@ export class GenericTableComponent implements OnInit {
       data: {
         numeroCuenta: numeroCuenta,
         nitProductor: nitProductor
+      },
+      disableClose: true
+    })
+
+    abrirDialogo.afterClosed().subscribe(result => {
+
+    });
+  };
+
+  accionParcialidad(noCuenta: string, nitProductor : string, pesajeTotalKg: number, tipoCafe: string) {
+    console.log("Data--------->", noCuenta, nitProductor,pesajeTotalKg,tipoCafe );
+    const abrirDialogo = this.dialog.open(ModalAccionComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: {
+        noCuenta: noCuenta,
+        nitProductor: nitProductor,
+        pesajeTotalKg: pesajeTotalKg,
+        tipoCafe: tipoCafe
       },
       disableClose: true
     })

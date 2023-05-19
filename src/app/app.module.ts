@@ -25,8 +25,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalParcialidadComponent } from './Componentes/accounts/modal-parcialidad/modal-parcialidad.component';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GenericSpinnerComponent } from './shared/generic-spinner/generic-spinner.component';
+
+import { MenuComponent } from './Componentes/menu/menu.component';
+import { RevisionSolicitudComponent } from './Componentes/Cafetito/revision-solicitud/revision-solicitud.component';
+import { ModalAccionComponent } from './Componentes/Cafetito/modal-accion/modal-accion.component';
+import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/revision-peso.component';
+import { ModalPesoComponent } from './Componentes/Peso-Cabal/modal-peso/modal-peso.component';
 
 
 @NgModule({
@@ -40,7 +47,13 @@ import { GenericSpinnerComponent } from './shared/generic-spinner/generic-spinne
     ParentAccountComponent,
     FormCreateChildComponent,
     ModalParcialidadComponent,
-    GenericSpinnerComponent
+    GenericSpinnerComponent,
+    MenuComponent,
+    RevisionSolicitudComponent,
+    ModalAccionComponent,
+    RevisionPesoComponent,
+    ModalPesoComponent,
+
   ],
   imports: [
     BrowserModule,

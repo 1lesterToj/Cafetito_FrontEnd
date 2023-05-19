@@ -7,11 +7,14 @@ const URL_CUENTA = environment.BASE_API + '/cuenta';
 const URL_USUARIOS = environment.BASE_API + '/usuarios';
 const ULR_PARCIALIDADES = environment.BASE_API + '/parcialidades';
 const URL_TRANSPORTISTAS = environment.BASE_API + '/transportista/transporte';
+const ULR_TRANSPORTISTA = environment.BASE_API + '/transportista';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneralServiceService {
+  URL_CUENTA2 = environment.BASE_API + '/cuenta';
 
   constructor(
     private http: HttpClient
@@ -79,5 +82,25 @@ export class GeneralServiceService {
     return httpOptions;
   }
 
+
+  public getData<T>(pUrl: string, pNombreServicio: string | null, pParametro: string | null = null, pJSON: boolean = false): Observable<T> {
+    if (pNombreServicio == null) {
+        if (pParametro === null) {
+            return this.http.get<T>(`${pUrl}`, this.generateHeaders(pJSON));
+        } else {
+            return this.http.get<T>(`${pUrl}/${pParametro}`, this.generateHeaders(pJSON));
+        }
+    } else {
+        if (pParametro === null) {
+            return this.http.get<T>(`${pUrl}/${pNombreServicio}`, this.generateHeaders(pJSON));
+        } else {
+            return this.http.get<T>(`${pUrl}/${pNombreServicio}/${pParametro}`, this.generateHeaders(pJSON));
+        }
+    }
+}
+
+saveAccionSolicitud(data: any) {
+  return this.http.post<any>(URL_CUENTA + '/autorizarCuenta', data)
+};
 
 }

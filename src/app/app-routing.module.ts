@@ -4,6 +4,9 @@ import { LoginPGComponent } from './Componentes/Home/login-pg/login-pg.component
 import { HomePageComponent } from './Componentes/Home/home-page/home-page.component';
 import { AuthGuard } from './security/auth.guard';
 import { ParentAccountComponent } from './Componentes/accounts/parent-account/parent-account.component';
+import { MenuComponent } from './Componentes/menu/menu.component';
+import { RevisionSolicitudComponent } from './Componentes/Cafetito/revision-solicitud/revision-solicitud.component';
+import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/revision-peso.component';
 
 const routes: Routes = [
   //here
@@ -22,6 +25,24 @@ const routes: Routes = [
   {
     path: 'accounts',
     component: ParentAccountComponent,
+    canActivate: [AuthGuard]
+  }
+,
+  {
+    path: 'menu',
+    component: MenuComponent,
+    canActivate: [AuthGuard]
+  }
+  ,
+  {
+    path: 'revision',
+    component: RevisionSolicitudComponent,
+    canActivate: [AuthGuard]
+  }
+  ,
+  {
+    path: 'revision-peso',
+    component: RevisionPesoComponent,
     canActivate: [AuthGuard]
   }
 

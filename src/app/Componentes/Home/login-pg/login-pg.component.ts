@@ -40,9 +40,10 @@ export class LoginPGComponent implements OnInit {
         localStorage.setItem('accessToken', res.accessToken);
         localStorage.setItem('guard', 'Authorization');
         localStorage.setItem('usuario', res.username);
+        localStorage.setItem('roles', res.roles[0]);
         await this.notificaciones.notificacionSuccess();
         if (login) {
-          this.router.navigate(['/homePage/true']);
+          this.router.navigate(['/menu']);
           this.variableGlobal.navarPerm = true;
         }
       })

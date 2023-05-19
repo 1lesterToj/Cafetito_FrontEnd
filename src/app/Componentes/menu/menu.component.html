@@ -1,0 +1,59 @@
+<app-nav-p></app-nav-p>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="titulo">
+                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container col-sm-12 col-md-8 col-xs-6 col-lg-6">
+    <div class="row" >
+        <div *ngIf="this.agricultor" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
+            <a [routerLink]="['/accounts']">
+                <div class="zoom img">
+                    <img src="assets/img/crear.png">
+                </div>
+            </a>
+        </div>
+        <div *ngIf="this.agricultor" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
+            <a [routerLink]="['/consulta']">
+                <div class="zoom img">
+                    <img src="assets/img/inProceso.png">
+                </div>
+            </a>
+        </div>
+   
+        <div *ngIf="this.beneficio" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
+            <a [routerLink]="['/reporte']">
+                <div class="zoom img">
+                    <img src="assets/img/inProceso.png">
+                </div>
+            </a>
+        </div>
+        <div *ngIf="this.beneficio"  class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
+            <a [routerLink]="['/revision']">
+                <div class="zoom img">
+                    <img src="assets/img/entrante.png">
+                </div>
+            </a>
+        </div>
+   <!-- 
+        <div  *ngIf="roles.includes(administrador)" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
+            <a [routerLink]="['/administracion/solicitudes']">
+                <div class="zoom">
+                    <img src="assets/img/solicitante.png">
+                </div>
+            </a>
+        </div>
+ -->
+        <div *ngIf="this.pesoCabal" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
+            <a [routerLink]="['/revision-peso']">
+                <div class="zoom img">
+                    <img src="assets/img/pesoCabal.png">
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
