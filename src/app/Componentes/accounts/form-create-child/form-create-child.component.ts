@@ -17,6 +17,7 @@ export class FormCreateChildComponent implements OnInit {
   disabled: boolean = true;
   cantidadParcialidades!: any;
   viewTable: boolean = false;
+  viewSpinner: boolean = true;
   tableCols: string[] = ['contador', 'numerocuenta', 'nit_productor', 'cantidadP', 'pesajeT', 'tipoC', 'accionParcialidad'];//variables tabla operador
   hText: string[] = ['ID.', 'Número de cuenta', 'NIT de productor', 'Cantidad de parcialidades', 'Pesaje total', 'Tipo de café', 'Parcialidad'];//encabezado tabla operador
   tableData: {}[] = [{}];
@@ -42,6 +43,9 @@ export class FormCreateChildComponent implements OnInit {
       .then(async (res: any) => {
         await this.notificaciones.notificacionGenerica('Cuenta Creada', 'success');
         this.cleanInput();
+        setTimeout(async () => {
+          await this.getDataClient();
+        }, 1000);
       })
       .catch(async err => {
         await this.notificaciones.errorControlado(err);
@@ -69,10 +73,10 @@ export class FormCreateChildComponent implements OnInit {
           .then(res => {
             console.log('CUENTAS DEL USUARIO LOGUEADO>>', res)
             let cuentasLista: any = [];
-            res.data.forEach(async (element: any) => {
+            res.data.forEach(async (element: any, index: any) => {
 
               await cuentasLista.push({
-                contador: element.idCuenta,
+                contador: index + +1,
                 numerocuenta: element.noCuenta,
                 nit_productor: element.nitProductor,
                 cantidadP: element.cantidadParcialidades,
@@ -82,10 +86,12 @@ export class FormCreateChildComponent implements OnInit {
               this.tableData = cuentasLista;
             });
             this.viewTable = true;
+            this.viewSpinner = false;
 
           })
           .catch(async err => {
-            await this.notificaciones.errorControlado(err);
+            //await this.notificaciones.errorControlado(err);
+            this.viewSpinner = false;
           });
       })
       .catch(async err => {

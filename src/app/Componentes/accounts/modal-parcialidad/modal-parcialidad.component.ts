@@ -96,9 +96,9 @@ export class ModalParcialidadComponent implements OnInit {
     await firstValueFrom(getData$)
       .then(res => {
         let parcialidadLista: any = [];
-        res.data.forEach(async (element: any) => {
+        res.data.forEach(async (element: any, index: any) => {
           await parcialidadLista.push({
-            contador: element.idParcialidad,
+            contador: index + +1,
             licenciaT: element.licenciaTransportista,
             placaT: element.noPlacaTransporte,
             pesoP: element.pesoParcialidadKg
