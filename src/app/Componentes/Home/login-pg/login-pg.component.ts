@@ -13,6 +13,7 @@ import { VariableGlobal } from 'src/app/shared/variable-global';
 export class LoginPGComponent implements OnInit {
   username!: string;
   password!: string;
+  permisoLogin!: boolean;
   constructor(
     private servicios: GeneralServiceService,
     private notificaciones: GenericNotification,
@@ -22,7 +23,7 @@ export class LoginPGComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-
+    this.getToken();
   }
 
 
@@ -50,6 +51,13 @@ export class LoginPGComponent implements OnInit {
       .catch(err => {
 
       })
+  }
+
+  async getToken() {
+    let token: any = localStorage.getItem('accessToken');
+    if (token != undefined) {
+      this.router.navigate(['/homePage/true'])
+    }
   }
 
 }
