@@ -2,9 +2,10 @@
     <div class="container">
         <div class="card border-0 shadow my-5">
             <div class="card-body p-5">
-                <h1 class="fw-light">SOLICITUD POR PESAR</h1>
+                <h1 class="fw-light">SOLICITUDES POR PESAR</h1>
                 <hr>
-                <!--CODE HERE-->
+                <app-generic-table [tableColumns]="tableCols" [headerText]="hText" [parentComp]="'sb-charts'" [tableData]="tableData"
+                *ngIf="viewTable"></app-generic-table>
             </div>
         </div>
     </div>

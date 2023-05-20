@@ -103,4 +103,8 @@ saveAccionSolicitud(data: any) {
   return this.http.post<any>(URL_CUENTA + '/autorizarCuenta', data)
 };
 
+getParcialidadesByEstado(data: any) {
+  return this.http.post<any>(ULR_PARCIALIDADES + '/consultaParcialidadesByEstado', data);
+};
+
 }
