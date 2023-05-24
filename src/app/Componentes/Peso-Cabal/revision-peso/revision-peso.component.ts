@@ -17,12 +17,8 @@ export class RevisionPesoComponent implements OnInit {
   ) { }
 
  async ngOnInit(): Promise<void> {
-     //SE OBTIENE CUENTAS CREADAS AL NIT DEL USUARIO LOGUEADO
-     const jsonTemp: any = {
-      param: 11
-    }
-
-    await this.servicio.getParcialidadesByEstado(jsonTemp).toPromise().then(res => {
+    const res =  this.servicio.getData<any>(this.servicio.ULR_PARCIALIDADS, `consultaParcialidadesByCreadas`, null).toPromise()
+    .then(res => {
 
         console.log('CUENTAS PARA PESO CABAL ------ ', res)
         let cuentasLista: any = [];

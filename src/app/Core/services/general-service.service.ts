@@ -17,7 +17,7 @@ export class GeneralServiceService {
   URL_CUENTA2 = environment.BASE_API + '/cuenta';
   URL_CUENTA3 = environment.BASE_API + '/transportista';
   ULR_TRANSPORTE = environment.BASE_API + '/transporte';
-
+  ULR_PARCIALIDADS = environment.BASE_API + '/parcialidades';
   constructor(
     private http: HttpClient
   ) { }
