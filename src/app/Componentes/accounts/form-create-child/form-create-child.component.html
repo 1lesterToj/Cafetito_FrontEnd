@@ -21,11 +21,11 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col">
-
                 <div class="form-group">
-                    <label for="pesajetotal">Peso total</label>
+                    <label for="pesajetotal">Peso total KG</label>
                     <input type="number" class="form-control" id="pesajetotal" placeholder="Ingrese el peso total"
                         required [(ngModel)]="pesajeTotalKg" [ngModelOptions]="{standalone: true}">
                 </div>
@@ -35,10 +35,12 @@
                     <label for="tipocafe">Tipo de café</label>
                     <select class="form-control" id="tipocafe" required [(ngModel)]="tipoCafe"
                         [ngModelOptions]="{standalone: true}" [ngModelOptions]="{standalone: true}">
-                        <option value="">Seleccione el tipo de café</option>
-                        <option value="cafe1">Café 1</option>
-                        <option value="cafe2">Café 2</option>
-                        <option value="cafe3">Café 3</option>
+                        <option value="cafe1">Café Arabica</option>
+                        <option value="cafe2">Café Bourbon</option>
+                        <option value="cafe3">Café Typica</option>
+                        <option value="cafe4">Café Caturra</option>
+                        <option value="cafe5">Café Catuai</option>
+                    
                     </select>
                 </div>
             </div>

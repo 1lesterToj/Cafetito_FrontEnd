@@ -15,6 +15,8 @@ const ULR_TRANSPORTISTA = environment.BASE_API + '/transportista';
 })
 export class GeneralServiceService {
   URL_CUENTA2 = environment.BASE_API + '/cuenta';
+  URL_CUENTA3 = environment.BASE_API + '/transportista';
+  ULR_TRANSPORTE = environment.BASE_API + '/transporte';
 
   constructor(
     private http: HttpClient

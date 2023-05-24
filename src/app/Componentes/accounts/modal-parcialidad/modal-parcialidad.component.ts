@@ -22,7 +22,8 @@ export class ModalParcialidadComponent implements OnInit {
   tableCols: string[] = ['contador', 'licenciaT', 'placaT', 'pesoP'];//variables tabla operador
   hText: string[] = ['ID.', 'Licencia transportista', 'Placa transporte', 'Peso Parcialidad'];//encabezado tabla operador
   tableData: {}[] = [{}];
-
+  dataChofer: any = [];
+  dataCamion: any = [];
   constructor(
     private servicio: GeneralServiceService,
     private notificaciones: GenericNotification,
@@ -34,6 +35,39 @@ export class ModalParcialidadComponent implements OnInit {
     console.log("DATOS DEL COMPONENTE ANTERIOR: ", this.dialogRef.componentInstance.data)
     this.jsonTemporal = this.dialogRef.componentInstance.data;
     this.getParcialidadesTable();
+
+    const res =  this.servicio.getData<any>(this.servicio.URL_CUENTA3, `obtenerTransportistasActivos`, null).toPromise()
+    .then(res => {
+      console.log('TRANSPORTISTAS ACTIVOS ------ >>', res)
+      let cuentasLista: any = [];
+      res.data.forEach(async (element: any) => {
+
+        await cuentasLista.push({
+          licenciaTransportista: element.licenciaTransportista,
+          nombre: element.nombreTransportista + ' ' +element.apellidoTransportista
+
+        })
+        console.log("forEach--- ", cuentasLista);
+        this.dataChofer = cuentasLista;
+      });
+    })
+
+    const res2 =  this.servicio.getData<any>(this.servicio.ULR_TRANSPORTE, `obtenerTrasportesActivos`, null).toPromise()
+    .then(res2 => {
+      console.log('TRANSPORTE ACTIVOS ------ >>', res2)
+      let cuentasLista: any = [];
+      res2.data.forEach(async (element: any) => {
+
+        await cuentasLista.push({
+          noPlaca: element.noPlaca,
+          placa: element.noPlaca
+
+        })
+        console.log("forEach--- ", cuentasLista);
+        this.dataCamion = cuentasLista;
+        console.log(" after forEach--- ", this.dataCamion);
+      });
+    })
   }
 
 
@@ -59,7 +93,7 @@ export class ModalParcialidadComponent implements OnInit {
           pesoParcialidad: this.pesoParcialidad,
           usuarioOpera: localStorage.getItem('usuario'),
         };
-
+        console.log('el Json ---------- ',jsonEnviar)
         const sendData$ = this.servicio.saveParcialidad(jsonEnviar);
         await firstValueFrom(sendData$)
           .then(async res => {
