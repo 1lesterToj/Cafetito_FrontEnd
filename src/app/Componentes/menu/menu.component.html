@@ -39,6 +39,14 @@
                 </div>
             </a>
         </div>
+
+        <div *ngIf="this.beneficio" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
+            <a [routerLink]="['/validar-tolerancia']">
+                <div class="zoom img">
+                    <img src="assets/img/cerrada.png">
+                </div>
+            </a>
+        </div>
    <!-- 
         <div  *ngIf="roles.includes(administrador)" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
             <a [routerLink]="['/administracion/solicitudes']">
@@ -56,12 +64,5 @@
             </a>
         </div>
 
-        <div *ngIf="this.pesoCabal" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
-            <a [routerLink]="['/validar-tolerancia']">
-                <div class="zoom img">
-                    <img src="assets/img/cerradas.png">
-                </div>
-            </a>
-        </div>
     </div>
 </div>
