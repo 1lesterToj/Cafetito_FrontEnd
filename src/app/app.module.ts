@@ -34,6 +34,7 @@ import { RevisionSolicitudComponent } from './Componentes/Cafetito/revision-soli
 import { ModalAccionComponent } from './Componentes/Cafetito/modal-accion/modal-accion.component';
 import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/revision-peso.component';
 import { ModalPesoComponent } from './Componentes/Peso-Cabal/modal-peso/modal-peso.component';
+import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-tolerancia/validar-tolerancia.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { ModalPesoComponent } from './Componentes/Peso-Cabal/modal-peso/modal-pe
     ModalAccionComponent,
     RevisionPesoComponent,
     ModalPesoComponent,
+    ValidarToleranciaComponent,
 
   ],
   imports: [

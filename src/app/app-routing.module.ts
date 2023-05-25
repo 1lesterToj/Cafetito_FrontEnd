@@ -7,6 +7,7 @@ import { ParentAccountComponent } from './Componentes/accounts/parent-account/pa
 import { MenuComponent } from './Componentes/menu/menu.component';
 import { RevisionSolicitudComponent } from './Componentes/Cafetito/revision-solicitud/revision-solicitud.component';
 import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/revision-peso.component';
+import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-tolerancia/validar-tolerancia.component';
 
 const routes: Routes = [
   //here
@@ -43,6 +44,12 @@ const routes: Routes = [
   {
     path: 'revision-peso',
     component: RevisionPesoComponent,
+    canActivate: [AuthGuard]
+  },
+
+  {
+    path: 'validar-tolerancia',
+    component: ValidarToleranciaComponent,
     canActivate: [AuthGuard]
   }
 
