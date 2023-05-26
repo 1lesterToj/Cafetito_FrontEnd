@@ -1,1 +1,48 @@
-<p>modal-peso works!</p>
+<div *ngIf="viewSpinner" class="row">
+    <app-generic-spinner></app-generic-spinner>
+</div>
+
+<h1 mat-dialog-title>Ingresar Peso</h1>
+<hr>
+<div class="row">
+    <div class="row">
+        <div class="col text-center">
+            <label for=""><strong>Número de cuenta: </strong></label> {{jsonTemporal.noCuenta}}
+        </div>
+    </div>
+    <div class="my-2 row">
+        <div class="col text-center">
+            <label for=""><strong>NIT del productor: </strong></label> {{jsonTemporal.nitProductor}}
+        </div>
+    </div>
+</div>
+<hr>
+<form>
+    <div class="form-group">
+        <label for="pesoBascula">Peso Bascula</label>
+        <input type="number" class="form-control" id="pesoBascula" [(ngModel)]="pesoBascula" name="pesoBascula">
+    </div>
+    <div class="row mt-2">
+        <div class="col text-center">
+            <button (click)="enviarPeso()" type="submit" class="btn btn-primary mx-2 my-2"
+                [disabled]="viewPDF">Enviar</button>
+            <button (click)="closeDialog()" type="submit" class="btn btn-danger mx-2 my-2">Salir</button>
+        </div>
+    </div>
+</form>
+
+<section *ngIf="viewPDF">
+    <hr>
+    <div class="row mt-2">
+        <div class="col-12 text-center">
+            <a *ngIf="viewPDF" mat-icon-button (click)="downloadPDF()">
+                <mat-icon style="font-size: 4rem; color: red;">picture_as_pdf</mat-icon>
+            </a>
+            <br>
+
+        </div>
+        <div class="col-12 text-center">
+            <label for="descargarPDF">Decargar PDF</label>
+        </div>
+    </div>
+</section>

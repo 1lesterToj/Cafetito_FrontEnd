@@ -18,6 +18,7 @@ export class GeneralServiceService {
   URL_CUENTA3 = environment.BASE_API + '/transportista';
   ULR_TRANSPORTE = environment.BASE_API + '/transporte';
   ULR_PARCIALIDADS = environment.BASE_API + '/parcialidades';
+  URL_PESOCABAL = environment.BASE_API + '/pesoCabal'
   constructor(
     private http: HttpClient
   ) { }
@@ -87,26 +88,39 @@ export class GeneralServiceService {
 
   public getData<T>(pUrl: string, pNombreServicio: string | null, pParametro: string | null = null, pJSON: boolean = false): Observable<T> {
     if (pNombreServicio == null) {
-        if (pParametro === null) {
-            return this.http.get<T>(`${pUrl}`, this.generateHeaders(pJSON));
-        } else {
-            return this.http.get<T>(`${pUrl}/${pParametro}`, this.generateHeaders(pJSON));
-        }
+      if (pParametro === null) {
+        return this.http.get<T>(`${pUrl}`, this.generateHeaders(pJSON));
+      } else {
+        return this.http.get<T>(`${pUrl}/${pParametro}`, this.generateHeaders(pJSON));
+      }
     } else {
-        if (pParametro === null) {
-            return this.http.get<T>(`${pUrl}/${pNombreServicio}`, this.generateHeaders(pJSON));
-        } else {
-            return this.http.get<T>(`${pUrl}/${pNombreServicio}/${pParametro}`, this.generateHeaders(pJSON));
-        }
+      if (pParametro === null) {
+        return this.http.get<T>(`${pUrl}/${pNombreServicio}`, this.generateHeaders(pJSON));
+      } else {
+        return this.http.get<T>(`${pUrl}/${pNombreServicio}/${pParametro}`, this.generateHeaders(pJSON));
+      }
     }
-}
+  }
 
-saveAccionSolicitud(data: any) {
-  return this.http.post<any>(URL_CUENTA + '/autorizarCuenta', data)
-};
+  saveAccionSolicitud(data: any) {
+    return this.http.post<any>(URL_CUENTA + '/autorizarCuenta', data)
+  };
 
-getParcialidadesByEstado(data: any) {
-  return this.http.post<any>(ULR_PARCIALIDADES + '/consultaParcialidadesByEstado', data);
-};
+  getParcialidadesByEstado(data: any) {
+    return this.http.post<any>(ULR_PARCIALIDADES + '/consultaParcialidadesByEstado', data);
+  };
+
+  putData(pUrl: string, pParam: any, pBody: any) {
+    let body = null;
+    if (pBody) {
+      body = pBody;
+    }
+    if (pParam === null) {
+      return this.http.put(`${pUrl}`, body, this.generateHeaders(true));
+    } else {
+      return this.http.put(`${pUrl}/${pParam}`, body, this.generateHeaders(true));
+    }
+  }
+
 
 }

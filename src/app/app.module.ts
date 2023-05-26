@@ -35,6 +35,7 @@ import { ModalAccionComponent } from './Componentes/Cafetito/modal-accion/modal-
 import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/revision-peso.component';
 import { ModalPesoComponent } from './Componentes/Peso-Cabal/modal-peso/modal-peso.component';
 import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-tolerancia/validar-tolerancia.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -73,8 +74,9 @@ import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-toler
     MatSortModule,
     FormsModule,
     MatDialogModule,
-    MatProgressSpinnerModule
- 
+    MatProgressSpinnerModule,
+    MatIconModule
+
 
   ],
   providers: [

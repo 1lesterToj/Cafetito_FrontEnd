@@ -9,16 +9,16 @@ import { GeneralServiceService } from 'src/app/Core/services/general-service.ser
 export class RevisionPesoComponent implements OnInit {
   tableData: {}[] = [{}];
   viewTable: boolean = false;
-  tableCols: string[] = ['contador', 'noCuenta', 'nitProductor', 'licenciaTransportista', 'noPlacaTransporte','pesoParcialidadKg', 'accionPesar'];//variables tabla operador
-  hText: string[] = ['ID.',' Numero de Cuenta', ' NIT Productor', ' Licencia Transportista', ' No. Placa',' Pero Parcialidad KG', ' Accion'];//encabezado tabla operador
-
+  tableCols: string[] = ['contador', 'noCuenta', 'nitProductor', 'licenciaTransportista', 'noPlacaTransporte', 'pesoParcialidadKg', 'accionPesar'];//variables tabla operador
+  hText: string[] = ['ID.', ' Numero de Cuenta', ' NIT Productor', ' Licencia Transportista', ' No. Placa', ' Pero Parcialidad KG', ' Accion'];//encabezado tabla operador
+  viewSpinner: boolean = true;
   constructor(
     private servicio: GeneralServiceService,
   ) { }
 
- async ngOnInit(): Promise<void> {
-    const res =  this.servicio.getData<any>(this.servicio.ULR_PARCIALIDADS, `consultaParcialidadesByCreadas`, null).toPromise()
-    .then(res => {
+  async ngOnInit(): Promise<void> {
+    const res = this.servicio.getData<any>(this.servicio.ULR_PARCIALIDADS, `consultaParcialidadesByCreadas`, null).toPromise()
+      .then(res => {
 
         console.log('CUENTAS PARA PESO CABAL ------ ', res)
         let cuentasLista: any = [];
@@ -34,15 +34,14 @@ export class RevisionPesoComponent implements OnInit {
             pesoParcialidadKg: element.pesoParcialidadKg
           })
           this.tableData = cuentasLista;
-          console.log('table data ---- ', this.tableData);
         });
         this.viewTable = true;
-       // this.viewSpinner = false;
+        this.viewSpinner = false;
 
       })
       .catch(async err => {
         //await this.notificaciones.errorControlado(err);
-       // this.viewSpinner = false;
+        this.viewSpinner = false;
       });
   }
 
