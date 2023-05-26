@@ -41,7 +41,7 @@ export class FormCreateChildComponent implements OnInit {
     const saveDataAccount$ = this.servicio.saveData(saveData);
     await firstValueFrom(saveDataAccount$)
       .then(async (res: any) => {
-        await this.notificaciones.notificacionGenerica('Cuenta Creada', 'success');
+        await this.notificaciones.notificacionGenerica(res.message, 'success');
         this.cleanInput();
         setTimeout(async () => {
           await this.getDataClient();
@@ -73,8 +73,11 @@ export class FormCreateChildComponent implements OnInit {
           .then(res => {
             console.log('CUENTAS DEL USUARIO LOGUEADO>>', res)
             let cuentasLista: any = [];
+            let estadoTemp : boolean = false;
             res.data.forEach(async (element: any, index: any) => {
-
+              if(element.estado == 1){
+                  estadoTemp = true;
+              }
               await cuentasLista.push({
                 contador: index + +1,
                 numerocuenta: element.noCuenta,
@@ -82,6 +85,7 @@ export class FormCreateChildComponent implements OnInit {
                 cantidadP: element.cantidadParcialidades,
                 pesajeT: element.pesajeTotalKg,
                 tipoC: element.tipoCafe,
+                estado: estadoTemp
               })
               this.tableData = cuentasLista;
             });
@@ -106,6 +110,5 @@ export class FormCreateChildComponent implements OnInit {
     this.tipoCafe = "";
     this.cantidadParcialidades = "";
   }
-
 
 }

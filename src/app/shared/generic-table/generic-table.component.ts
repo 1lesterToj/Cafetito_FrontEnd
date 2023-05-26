@@ -8,6 +8,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalParcialidadComponent } from 'src/app/Componentes/accounts/modal-parcialidad/modal-parcialidad.component';
 import { ModalAccionComponent } from 'src/app/Componentes/Cafetito/modal-accion/modal-accion.component';
 import { ModalPesoComponent } from 'src/app/Componentes/Peso-Cabal/modal-peso/modal-peso.component';
+import { GeneralServiceService } from 'src/app/Core/services/general-service.service';
+import { firstValueFrom } from 'rxjs';
+import { GenericNotification } from '../notificaciones';
+import Swal from 'sweetalert2';
+import { ModalToleranciaComponent } from 'src/app/Componentes/Cafetito/modal-tolerancia/modal-tolerancia.component';
 
 @Component({
   selector: 'app-generic-table',
@@ -33,7 +38,8 @@ export class GenericTableComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private service: GeneralServiceService,
+    private notification: GenericNotification) { }
 
   ngOnInit(): void {
     this.tableDataSrc = new MatTableDataSource(this.tableData);
@@ -146,5 +152,39 @@ export class GenericTableComponent implements OnInit {
     abrirDialogo.afterClosed().subscribe(result => {
 
     });
+  }
+
+  async validarTolerancia(noCuenta: string) {
+    console.log("DATA ====> ", noCuenta);
+    const user = localStorage.getItem('usuario');
+    let jsontemp = {
+      noCuenta: noCuenta,
+      usuario: user,
+      accion: 0
+    };
+    const postService$ = this.service.postValidarTolerancia(jsontemp);
+    await firstValueFrom(postService$)
+      .then(async resultado => {
+        console.log(resultado.message);
+        if (resultado.data != null) {
+          const abrirDialogo = this.dialog.open(ModalToleranciaComponent, {
+            height: 'auto',
+            width: 'auto',
+            data: resultado,
+            disableClose: true
+          })
+          abrirDialogo.afterClosed().subscribe(result => {
+
+          });
+        } else {
+          await this.notification.notificacionGenerica(resultado.message, "success");
+          location.reload();
+        }
+
+
+      })
+      .catch(error => {
+
+      })
   }
 }

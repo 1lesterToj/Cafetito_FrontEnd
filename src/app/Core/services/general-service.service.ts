@@ -67,6 +67,11 @@ export class GeneralServiceService {
       this.generateHeaders(true));
   };
 
+  postValidarTolerancia(data: any) {
+    return this.http.post<any>(`${URL_CUENTA}/validarToleranciaCuenta`, data,
+      this.generateHeaders(true));
+  };
+
 
   public generateHeaders(json: boolean = false): object {
     let headers: HttpHeaders;

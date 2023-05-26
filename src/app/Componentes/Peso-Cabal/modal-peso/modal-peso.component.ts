@@ -81,5 +81,6 @@ export class ModalPesoComponent implements OnInit {
       } */
     await this.pdfService.createPDF(jsonTemporal);
     this.viewSpinner = false;
+    location.reload();
   }
 }

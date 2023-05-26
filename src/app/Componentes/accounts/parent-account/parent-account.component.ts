@@ -11,5 +11,7 @@ export class ParentAccountComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  actualizarPagina(){
+    location.reload();
+  }
 }

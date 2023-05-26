@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralServiceService } from 'src/app/Core/services/general-service.service';
+import { GenericNotification } from 'src/app/shared/notificaciones';
 
 @Component({
   selector: 'app-validar-tolerancia',
@@ -15,6 +16,7 @@ export class ValidarToleranciaComponent implements OnInit {
 
   constructor(
     private servicio: GeneralServiceService,
+    private notificacion: GenericNotification
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -41,9 +43,14 @@ export class ValidarToleranciaComponent implements OnInit {
 
       })
       .catch(async err => {
-        //await this.notificaciones.errorControlado(err);
-       // this.viewSpinner = false;
+        await this.notificacion.errorControlado(err);
+       console.log('error: ' + err);
       });
+  }
+
+  
+  actualizarPagina(){
+    location.reload();
   }
 
 }

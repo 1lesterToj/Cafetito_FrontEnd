@@ -1,0 +1,24 @@
+<!-- <div *ngIf="viewSpinner" class="row">
+    <app-generic-spinner></app-generic-spinner>
+</div> -->
+
+<h1 mat-dialog-title>Parcialidad</h1>
+
+<hr>
+<p>{{menssage}}.</p>
+
+<section >
+    <hr>
+    <div class="row mt-2">
+        <div class="col-12 text-center">
+            <a (click)="descargarPdf()">
+                <mat-icon style="font-size: 4rem; color: red;">picture_as_pdf</mat-icon>
+            </a>
+            <br>
+
+        </div>
+        <div class="col-12 text-center">
+            <label for="descargarPDF">Decargar PDF</label>
+        </div>
+    </div>
+</section>

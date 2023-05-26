@@ -1,11 +1,23 @@
 <app-nav-p></app-nav-p>
-    <div class="container">
-        <div class="card border-0 shadow my-5">
-            <div class="card-body p-5">
-                <h1 class="fw-light">Cuentas Cerradas</h1>
-                <hr>
-                <app-generic-table [tableColumns]="tableCols" [headerText]="hText" [parentComp]="'sb-charts'" [tableData]="tableData"
-                *ngIf="viewTable"></app-generic-table>
+<div class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <div class="row">
+                <div class="col-10">
+                    <h1 class="fw-light">Cuentas Cerradas</h1>
+                </div>
+                <div class="col-2 text-center">
+                    <a (click)="actualizarPagina()">
+                        <mat-icon style="font-size: 1.5rem; color: rgb(31, 60, 155);">restart_alt</mat-icon>
+                    </a>
+                    <br>
+                    <label>Actualizar</label>
+                </div>
             </div>
+
+            <hr>
+            <app-generic-table [tableColumns]="tableCols" [headerText]="hText" [parentComp]="'sb-charts'"
+                [tableData]="tableData" *ngIf="viewTable"></app-generic-table>
         </div>
     </div>
+</div>
