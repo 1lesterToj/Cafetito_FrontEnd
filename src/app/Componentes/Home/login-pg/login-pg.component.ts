@@ -24,6 +24,7 @@ export class LoginPGComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    this.parametro = '';
     this._route.params.subscribe(async (params: Params) => {
       console.log(params['origen']);
       this.parametro = params['origen'];
