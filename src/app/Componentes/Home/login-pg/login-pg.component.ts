@@ -14,6 +14,7 @@ export class LoginPGComponent implements OnInit {
   username!: string;
   password!: string;
   permisoLogin!: boolean;
+  parametro!: String | boolean;
   constructor(
     private servicios: GeneralServiceService,
     private notificaciones: GenericNotification,
@@ -23,6 +24,11 @@ export class LoginPGComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    this._route.params.subscribe(async (params: Params) => {
+      console.log(params['origen']);
+      this.parametro = params['origen'];
+
+    })
     this.getToken();
   }
 
@@ -44,8 +50,13 @@ export class LoginPGComponent implements OnInit {
         localStorage.setItem('roles', res.roles[0]);
         await this.notificaciones.notificacionSuccess();
         if (login) {
-          this.router.navigate(['/menu']);
-          this.variableGlobal.navarPerm = true;
+          if (this.parametro == 'true') {
+            this.router.navigate(['/menu']);
+            this.variableGlobal.navarPerm = true;
+          }else{
+            this.router.navigate(['/consulta-qr-transportista/' + this.parametro]); /// colocar ruta pagina a utilizar
+            this.variableGlobal.navarPerm = true;
+          }
         }
       })
       .catch(err => {

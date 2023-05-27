@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     console.log(localStorage.getItem)
     if (localStorage.getItem('accessToken') == null || localStorage.getItem('guard') !== 'Authorization') {
-      this.route.navigate(['/loginpg']);
+      this.route.navigate(['/loginpg/true']);
       console.log("NO TIENE PERMISOS PARA NAVEGARA")
       return of(false);
     } else {

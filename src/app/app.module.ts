@@ -35,14 +35,12 @@ import { ModalAccionComponent } from './Componentes/Cafetito/modal-accion/modal-
 import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/revision-peso.component';
 import { ModalPesoComponent } from './Componentes/Peso-Cabal/modal-peso/modal-peso.component';
 import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-tolerancia/validar-tolerancia.component';
-
 import { MatIconModule } from '@angular/material/icon';
 import { ModalToleranciaComponent } from './Componentes/Cafetito/modal-tolerancia/modal-tolerancia.component';
-
-import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { ConsultaQrTransportistaComponent } from './Componentes/Cafetito/consulta-qr-transportista/consulta-qr-transportista.component';
 import { TransportistasComponent } from './Componentes/accounts/transportistas/transportistas.component';
 import { ModalQrComponent } from './Componentes/accounts/transportistas/modal-qr/modal-qr.component';
-
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 
 @NgModule({
@@ -63,12 +61,10 @@ import { ModalQrComponent } from './Componentes/accounts/transportistas/modal-qr
     RevisionPesoComponent,
     ModalPesoComponent,
     ValidarToleranciaComponent,
-
     ModalToleranciaComponent,
-
     TransportistasComponent,
     ModalQrComponent,
-
+    ConsultaQrTransportistaComponent,
 
   ],
   imports: [
@@ -88,12 +84,9 @@ import { ModalQrComponent } from './Componentes/accounts/transportistas/modal-qr
     FormsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-
     MatIconModule,
     MatDialogModule,
-
-
-    NgxQRCodeModule
+    NgxQRCodeModule,
 
 
   ],
