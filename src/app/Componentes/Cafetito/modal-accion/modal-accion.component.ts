@@ -30,45 +30,51 @@ export class ModalAccionComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  async aprobar(){
+  async aprobar() {
     const jsonEnviar = {
       noCuenta: this.jsonTemporal.noCuenta,
       accion: 1,
       usuario: localStorage.getItem('usuario'),
     };
-    console.log('aprobar---',jsonEnviar);
+    console.log('aprobar---', jsonEnviar);
     const sendData$ = this.servicio.saveAccionSolicitud(jsonEnviar);
     await firstValueFrom(sendData$)
       .then(async res => {
-        await this.notificaciones.notificacionGenerica('INFORMACION ALMACENADA EXITOSAMENTE', 'success');
+        await this.notificaciones.notificacionGenerica(res.message, 'success');
         this.clearFormulario();
+        location.reload();
       })
-      .catch(err => {
+      .catch(async err => {
         console.log(err);
-       this.notificaciones.notificacionGenerica('INFORMACION ALMACENADA CON ERROR', 'info');
+        await this.notificaciones.errorControlado(err);
+        location.reload();
       });
   }
 
- async rechazar(){
+  async rechazar() {
     const jsonEnviar = {
       noCuenta: this.jsonTemporal.noCuenta,
       accion: 2,
       usuario: localStorage.getItem('usuario'),
     };
-    console.log('rechazar---',jsonEnviar);
+    console.log('rechazar---', jsonEnviar);
     const sendData$ = this.servicio.saveAccionSolicitud(jsonEnviar);
     await firstValueFrom(sendData$)
       .then(async res => {
-        await this.notificaciones.notificacionGenerica('INFORMACION ALMACENADA EXITOSAMENTE', 'success');
+        await this.notificaciones.notificacionGenerica(res.message, 'success');
         this.clearFormulario();
+        location.reload();
+
       })
-      .catch(err => {
+      .catch(async err => {
         console.log(err);
-       this.notificaciones.notificacionGenerica('INFORMACION ALMACENADA CON ERROR', 'info');
+        await this.notificaciones.errorControlado(err);
+        location.reload();
+
       });
   }
 
-  clearFormulario(){
+  clearFormulario() {
     this.router.navigate(['/revision']);
   }
 

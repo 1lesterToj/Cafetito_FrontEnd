@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
+import { GeneralServiceService } from 'src/app/Core/services/general-service.service';
+import { GenericNotification } from 'src/app/shared/notificaciones';
 
 @Component({
   selector: 'app-consulta-qr-transportista',
@@ -8,15 +11,39 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class ConsultaQrTransportistaComponent implements OnInit {
   parametro !: string | number;
-  constructor(private _route: ActivatedRoute,) { }
-  
+  dataUser!: any;
+  viewHtml: boolean = false;
+  constructor(private _route: ActivatedRoute,
+    private service: GeneralServiceService,
+    private notificaciones: GenericNotification) { }
 
-  ngOnInit(): void {
+
+  async ngOnInit(): Promise<void> {
     this._route.params.subscribe(async (params: Params) => {
-      console.log(params['origen']);
-      this.parametro = params['origen'];
+      this.parametro = params['licencia'];
+      console.log("PARAMETRO ****", this.parametro);
 
     })
+
+    await this.getDataTransportista(this.parametro);
+  }
+
+  async getDataTransportista(data: any) {
+    let jsonTemp = {
+      licenciaTransportista: data
+    }
+
+    const getTransportistaQR$ = this.service.getTransportistaQR(jsonTemp);
+    await firstValueFrom(getTransportistaQR$)
+      .then(res => {
+        this.dataUser = res.data[0];
+        console.log("DATAAA>>", this.dataUser)
+        this.viewHtml = true;
+      })
+      .catch(async err => {
+        await this.notificaciones.errorControlado(err);
+        this.service.logout();
+      })
   }
 
 }

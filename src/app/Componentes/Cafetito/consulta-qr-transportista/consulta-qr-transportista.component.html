@@ -1,159 +1,98 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Formulario con Bootstrap</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <section style="background-color: #eee;">
-        <div class="container py-5">
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="card mb-4">
-                <div class="card-body text-center">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                    class="rounded-circle img-fluid" style="width: 150px;">
-                  <h5 class="my-3">John Smith</h5>
-                  <p class="text-muted mb-1">Full Stack Developer</p>
-                  <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                  <div class="d-flex justify-content-center mb-2">
-                    <button type="button" class="btn btn-primary">Follow</button>
-                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-4 mb-lg-0">
-                <div class="card-body p-0">
-                  <ul class="list-group list-group-flush rounded-3">
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fas fa-globe fa-lg text-warning"></i>
-                      <p class="mb-0">https://mdbootstrap.com</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                      <p class="mb-0">mdbootstrap</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                      <p class="mb-0">@mdbootstrap</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                      <p class="mb-0">mdbootstrap</p>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                      <p class="mb-0">mdbootstrap</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-8">
-              <div class="card mb-4">
-
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Full Name</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">Johnatan Smith</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Email</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">example@example.com</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Phone</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">(097) 234-5678</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Mobile</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">(098) 765-4321</p>
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <p class="mb-0">Address</p>
-                    </div>
-                    <div class="col-sm-9">
-                      <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                    </div>
-                  </div>
-                </div>
-
-                <br>
-                <div class="card-body">
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <p class="mb-0">Full Name</p>
-                      </div>
-                      <div class="col-sm-9">
-                        <p class="text-muted mb-0">Johnatan Smith</p>
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <p class="mb-0">Email</p>
-                      </div>
-                      <div class="col-sm-9">
-                        <p class="text-muted mb-0">example@example.com</p>
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <p class="mb-0">Phone</p>
-                      </div>
-                      <div class="col-sm-9">
-                        <p class="text-muted mb-0">(097) 234-5678</p>
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <p class="mb-0">Mobile</p>
-                      </div>
-                      <div class="col-sm-9">
-                        <p class="text-muted mb-0">(098) 765-4321</p>
-                      </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <p class="mb-0">Address</p>
-                      </div>
-                      <div class="col-sm-9">
-                        <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-
-            
+<app-generic-spinner *ngIf="!viewHtml"></app-generic-spinner>
+<app-nav-p></app-nav-p>
+<section *ngIf="viewHtml">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid" style="width: 150px;">
+            <h3 class="my-3">{{this.dataUser.nombre_transportista}}</h3>
+            <p class="text-muted "><strong>Licencia:</strong> {{this.dataUser.licencia_transportista}}</p>
+            <p class="text-muted "><strong>Estado transportista:</strong> {{this.dataUser.estado_transportista}}</p>
+            <p class="text-muted "><strong>Tipo de licencia: </strong>{{this.dataUser.tipo_licencia}}</p>
           </div>
         </div>
-      </section>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col text-center">
+                <h3 class="my-3">DATOS TRANSPORTE</h3>
+                <p class="text-muted "><strong>Placa:</strong> {{this.dataUser.no_placa_transporte}}</p>
+                <p class="text-muted "><strong>Marca:</strong> {{this.dataUser.marca_vehiculo}}</p>
+                <p class="text-muted "><strong>Tipo vehículo: </strong>{{this.dataUser.tipo_vehiculo}}</p>
+                <p class="text-muted "><strong>Peso vehículo: </strong>{{this.dataUser.peso_transporte}}</p>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <h3 class="my-3 text-center mb-4">DATOS PARCIALIDAD</h3>
+
+              <div class="col-sm-3">
+                <p class="mb-0">Identificador parcialidad:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.dataUser.id_parcialidad}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Número de cuenta:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.dataUser.no_cuenta}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Peso parcialidad:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.dataUser.peso_parcialidad_kg}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Estado Parcialidad:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.dataUser.estado_parcialidad}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <h3 class="my-3 text-center mb-4">DATOS DEL PRODUCTOR</h3>
+
+              <div class="col-sm-3">
+                <p class="mb-0">NIT:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.dataUser.nit_productor}}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Razón social:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{this.dataUser.razon_social}}</p>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

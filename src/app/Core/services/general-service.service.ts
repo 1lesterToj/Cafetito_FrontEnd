@@ -127,5 +127,8 @@ export class GeneralServiceService {
     }
   }
 
+  getTransportistaQR(data: any) {
+    return this.http.post<any>(ULR_TRANSPORTISTA + '/getTransportistaQR', data)
+  };
 
 }

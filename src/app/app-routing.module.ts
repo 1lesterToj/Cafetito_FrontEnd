@@ -20,11 +20,11 @@ const routes: Routes = [
 
   },
 
-  {
+/*   {
     path: 'homePage/:permiso',
     component: HomePageComponent,
     canActivate: [AuthGuard]
-  },
+  }, */
   {
     path: 'accounts',
     component: ParentAccountComponent,
