@@ -35,8 +35,14 @@ import { ModalAccionComponent } from './Componentes/Cafetito/modal-accion/modal-
 import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/revision-peso.component';
 import { ModalPesoComponent } from './Componentes/Peso-Cabal/modal-peso/modal-peso.component';
 import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-tolerancia/validar-tolerancia.component';
+
 import { MatIconModule } from '@angular/material/icon';
 import { ModalToleranciaComponent } from './Componentes/Cafetito/modal-tolerancia/modal-tolerancia.component';
+
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { TransportistasComponent } from './Componentes/accounts/transportistas/transportistas.component';
+import { ModalQrComponent } from './Componentes/accounts/transportistas/modal-qr/modal-qr.component';
+
 
 
 @NgModule({
@@ -57,7 +63,12 @@ import { ModalToleranciaComponent } from './Componentes/Cafetito/modal-toleranci
     RevisionPesoComponent,
     ModalPesoComponent,
     ValidarToleranciaComponent,
+
     ModalToleranciaComponent,
+
+    TransportistasComponent,
+    ModalQrComponent,
+
 
   ],
   imports: [
@@ -77,8 +88,12 @@ import { ModalToleranciaComponent } from './Componentes/Cafetito/modal-toleranci
     FormsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+
     MatIconModule,
     MatDialogModule,
+
+
+    NgxQRCodeModule
 
 
   ],

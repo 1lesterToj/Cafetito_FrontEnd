@@ -7,12 +7,16 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalParcialidadComponent } from 'src/app/Componentes/accounts/modal-parcialidad/modal-parcialidad.component';
 import { ModalAccionComponent } from 'src/app/Componentes/Cafetito/modal-accion/modal-accion.component';
+
 import { ModalPesoComponent } from 'src/app/Componentes/Peso-Cabal/modal-peso/modal-peso.component';
 import { GeneralServiceService } from 'src/app/Core/services/general-service.service';
 import { firstValueFrom } from 'rxjs';
 import { GenericNotification } from '../notificaciones';
 import Swal from 'sweetalert2';
 import { ModalToleranciaComponent } from 'src/app/Componentes/Cafetito/modal-tolerancia/modal-tolerancia.component';
+
+import { ModalQrComponent } from 'src/app/Componentes/accounts/transportistas/modal-qr/modal-qr.component';
+
 
 @Component({
   selector: 'app-generic-table',
@@ -137,6 +141,7 @@ export class GenericTableComponent implements OnInit {
     });
   };
 
+
   accionPeso(contador: number, noCuenta: string, nitProductor: string) {
     console.log("DATA ====> ", contador, noCuenta);
     const abrirDialogo = this.dialog.open(ModalPesoComponent, {
@@ -187,4 +192,23 @@ export class GenericTableComponent implements OnInit {
 
       })
   }
+
+  accionQr(licenciaTransportista: number, nombreTransportista: string) {
+    console.log("Data--------->", licenciaTransportista, nombreTransportista);
+    const abrirDialogo = this.dialog.open(ModalQrComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: {
+        nombreTransportista: nombreTransportista,
+        licenciaTransportista: licenciaTransportista
+      },
+      disableClose: true
+    })
+
+    abrirDialogo.afterClosed().subscribe(result => {
+
+    });
+  };
+
+
 }

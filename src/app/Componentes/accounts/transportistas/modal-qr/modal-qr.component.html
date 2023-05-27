@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Codigo QR</h1>
+<hr>
+<!-- <div class="row">
+    <div class="row">
+        <div class="col text-center">
+            <label for=""><strong>Número de cuenta: </strong></label> {{jsonTemporal.noCuenta}}
+        </div>
+    </div>
+    <div class="my-2 row">
+        <div class="col text-center">
+            <label for=""><strong>NIT del productor: </strong></label> {{jsonTemporal.nitProductor}}
+        </div>
+    </div>
+    <div class="my-2 row">
+        <div class="col text-center">
+            <label for=""><strong>Pesaje Total: </strong></label> {{jsonTemporal.pesajeTotalKg}}
+        </div>
+    </div>
+    <div class="my-2 row">
+        <div class="col text-center">
+            <label for=""><strong>Tipo Cafe: </strong></label> {{jsonTemporal.tipoCafe}}
+        </div>
+    </div>
+</div> -->
+<ngx-qrcode 
+[elementType]="elementType" 
+[value]="value" 
+cssClass="aClass"
+[errorCorrectionLevel]="errorCorrectionLevel">
+</ngx-qrcode> 
+<br><br><br><br>
+<hr>
+<div class="row mt-2">
+    <div class="col text-center">
+      <!--   <button (click)="aprobar()" type="submit" class="btn btn-primary mx-2 my-2">Aprobar Solicitud</button>
+        <button (click)="rechazar()" type="submit" class="btn btn-warning mx-2 my-2">Rechazar Solicitud</button> -->
+        <button (click)="closeDialog()" type="submit" class="btn btn-danger mx-2 my-2">Regresar</button>
+    </div>
+</div>
+<hr>

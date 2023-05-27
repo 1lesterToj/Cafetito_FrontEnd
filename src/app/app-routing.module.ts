@@ -8,6 +8,7 @@ import { MenuComponent } from './Componentes/menu/menu.component';
 import { RevisionSolicitudComponent } from './Componentes/Cafetito/revision-solicitud/revision-solicitud.component';
 import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/revision-peso.component';
 import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-tolerancia/validar-tolerancia.component';
+import { TransportistasComponent } from './Componentes/accounts/transportistas/transportistas.component';
 
 const routes: Routes = [
   //here
@@ -50,6 +51,11 @@ const routes: Routes = [
   {
     path: 'validar-tolerancia',
     component: ValidarToleranciaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'transportistas',
+    component: TransportistasComponent,
     canActivate: [AuthGuard]
   }
 
