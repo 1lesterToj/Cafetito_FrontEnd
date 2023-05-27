@@ -13,7 +13,7 @@ import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiedi
 })
 export class ModalQrComponent implements OnInit {
 
-  url ='https://cafetito-front-de21h7cot-1lestertoj.vercel.app/loginpg/';
+  url ='https://cafetito-front-zd5nmf9jt-1lestertoj.vercel.app/loginpg/';
   profile = '';// SIRVE PARA CONCATENAR ALGO DESPUES DE LA DIAGONAL
   elementType = NgxQrcodeElementTypes.URL;
   errorCorrectionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
