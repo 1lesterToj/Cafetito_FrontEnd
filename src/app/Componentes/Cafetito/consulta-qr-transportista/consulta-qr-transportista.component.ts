@@ -24,8 +24,14 @@ export class ConsultaQrTransportistaComponent implements OnInit {
       console.log("PARAMETRO ****", this.parametro);
 
     })
+    const roles = localStorage.getItem('roles');
+    if (roles == 'ROLE_AGRICULTOR') {
+      await this.getDataTransportista(this.parametro);
+    } else {
+      await this.notificaciones.notificacionGenerica('NO CUENTA CON PERMISOS PARA ESTA SOLICITUD', 'warning');
+      this.service.logout();
+    }
 
-    await this.getDataTransportista(this.parametro);
   }
 
   async getDataTransportista(data: any) {
