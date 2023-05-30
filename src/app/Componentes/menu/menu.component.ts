@@ -10,6 +10,7 @@ export class MenuComponent implements OnInit {
   beneficio: boolean = false;
   agricultor: boolean = false;
   pesoCabal: boolean = false;
+  garita: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
@@ -25,6 +26,8 @@ export class MenuComponent implements OnInit {
 
     } else if (this.roles == 'ROLE_PESO_CABAL'){
       this.pesoCabal = true;
+    }else if (this.roles == 'ROLE_GARITA'){
+      this.garita = true;
     }
   }
 

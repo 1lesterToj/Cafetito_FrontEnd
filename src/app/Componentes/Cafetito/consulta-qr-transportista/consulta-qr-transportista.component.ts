@@ -25,7 +25,7 @@ export class ConsultaQrTransportistaComponent implements OnInit {
 
     })
     const roles = localStorage.getItem('roles');
-    if (roles == 'ROLE_AGRICULTOR') {
+      if (roles == 'ROLE_GARITA') {
       await this.getDataTransportista(this.parametro);
     } else {
       await this.notificaciones.notificacionGenerica('NO CUENTA CON PERMISOS PARA ESTA SOLICITUD', 'warning');

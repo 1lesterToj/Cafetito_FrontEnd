@@ -10,6 +10,7 @@ import { RevisionPesoComponent } from './Componentes/Peso-Cabal/revision-peso/re
 import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-tolerancia/validar-tolerancia.component';
 import { TransportistasComponent } from './Componentes/accounts/transportistas/transportistas.component';
 import { ConsultaQrTransportistaComponent } from './Componentes/Cafetito/consulta-qr-transportista/consulta-qr-transportista.component';
+import { GaritaComponent } from './Componentes/accounts/garita/garita.component';
 
 const routes: Routes = [
   //here
@@ -62,6 +63,11 @@ const routes: Routes = [
   {
     path: 'consulta-qr-transportista/:licencia',
     component: ConsultaQrTransportistaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'garita',
+    component: GaritaComponent,
     canActivate: [AuthGuard]
   },
 

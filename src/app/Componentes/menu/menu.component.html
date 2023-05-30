@@ -46,6 +46,13 @@
                 </div>
             </a>
         </div>
+        <div *ngIf="this.garita" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
+            <a [routerLink]="['/garita']">
+                <div class="zoom img">
+                    <img src="assets/img/piloto.png">
+                </div>
+            </a>
+        </div>
 
         <div *ngIf="this.beneficio" class="col-sm-6 col-lg-6 col-md-6 mt-4 col-xs-12">
             <a [routerLink]="['/validar-tolerancia']">

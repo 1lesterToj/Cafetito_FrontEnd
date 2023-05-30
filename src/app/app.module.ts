@@ -41,6 +41,7 @@ import { ConsultaQrTransportistaComponent } from './Componentes/Cafetito/consult
 import { TransportistasComponent } from './Componentes/accounts/transportistas/transportistas.component';
 import { ModalQrComponent } from './Componentes/accounts/transportistas/modal-qr/modal-qr.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { GaritaComponent } from './Componentes/accounts/garita/garita.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
     TransportistasComponent,
     ModalQrComponent,
     ConsultaQrTransportistaComponent,
+    GaritaComponent,
 
   ],
   imports: [
