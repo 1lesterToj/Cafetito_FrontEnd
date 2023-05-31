@@ -11,6 +11,7 @@ import { ValidarToleranciaComponent } from './Componentes/Cafetito/validar-toler
 import { TransportistasComponent } from './Componentes/accounts/transportistas/transportistas.component';
 import { ConsultaQrTransportistaComponent } from './Componentes/Cafetito/consulta-qr-transportista/consulta-qr-transportista.component';
 import { GaritaComponent } from './Componentes/accounts/garita/garita.component';
+import { ReporteriaEstadosCuentasComponent } from './Componentes/Cafetito/reporteria-estados-cuentas/reporteria-estados-cuentas.component';
 
 const routes: Routes = [
   //here
@@ -21,11 +22,11 @@ const routes: Routes = [
 
   },
 
-/*   {
-    path: 'homePage/:permiso',
-    component: HomePageComponent,
-    canActivate: [AuthGuard]
-  }, */
+  /*   {
+      path: 'homePage/:permiso',
+      component: HomePageComponent,
+      canActivate: [AuthGuard]
+    }, */
   {
     path: 'accounts',
     component: ParentAccountComponent,
@@ -68,6 +69,11 @@ const routes: Routes = [
   {
     path: 'garita',
     component: GaritaComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reporteria-estados',
+    component: ReporteriaEstadosCuentasComponent,
     canActivate: [AuthGuard]
   },
 

@@ -14,8 +14,10 @@ import { firstValueFrom } from 'rxjs';
 import { GenericNotification } from '../notificaciones';
 import Swal from 'sweetalert2';
 import { ModalToleranciaComponent } from 'src/app/Componentes/Cafetito/modal-tolerancia/modal-tolerancia.component';
+import { ModalQrComponent } from 'src/app/Componentes/accounts/modal-qr/modal-qr.component';
+import { PdfToleranciaService } from 'src/app/Core/services/pdf-tolerancia.service';
 
-import { ModalQrComponent } from 'src/app/Componentes/accounts/transportistas/modal-qr/modal-qr.component';
+
 
 
 @Component({
@@ -43,7 +45,8 @@ export class GenericTableComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor(private dialog: MatDialog, private service: GeneralServiceService,
-    private notification: GenericNotification) { }
+    private notification: GenericNotification,
+    private pdfTolerancia: PdfToleranciaService) { }
 
   ngOnInit(): void {
     this.tableDataSrc = new MatTableDataSource(this.tableData);
@@ -209,6 +212,11 @@ export class GenericTableComponent implements OnInit {
 
     });
   };
+
+  descargarPDF(json: any) {
+    console.log("json pdf: ", json)
+    this.pdfTolerancia.createPDF(json);
+  }
 
 
 }

@@ -1,5 +1,5 @@
-<div *ngIf="viewSpinner"  class="row">
-   <app-generic-spinner></app-generic-spinner>
+<div *ngIf="viewSpinner" class="row">
+    <app-generic-spinner></app-generic-spinner>
 </div>
 
 <div *ngIf="!viewSpinner" class="col align-self-center">
@@ -35,12 +35,12 @@
                     <label for="tipocafe">Tipo de café</label>
                     <select class="form-control" id="tipocafe" required [(ngModel)]="tipoCafe"
                         [ngModelOptions]="{standalone: true}" [ngModelOptions]="{standalone: true}">
-                        <option value="cafe1">Café Arabica</option>
-                        <option value="cafe2">Café Bourbon</option>
-                        <option value="cafe3">Café Typica</option>
-                        <option value="cafe4">Café Caturra</option>
-                        <option value="cafe5">Café Catuai</option>
-                    
+                        <option value="Café Arabica">Café Arabica</option>
+                        <option value="Café Bourbo">Café Bourbon</option>
+                        <option value="Café Typica">Café Typica</option>
+                        <option value="Café Caturra">Café Caturra</option>
+                        <option value="Café Catuai">Café Catuai</option>
+
                     </select>
                 </div>
             </div>
@@ -52,7 +52,7 @@
             </div>
         </div>
     </form>
-    
+
 </div>
 
 <hr style="border-width: 2px;">

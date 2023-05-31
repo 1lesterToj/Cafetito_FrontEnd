@@ -39,9 +39,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { ModalToleranciaComponent } from './Componentes/Cafetito/modal-tolerancia/modal-tolerancia.component';
 import { ConsultaQrTransportistaComponent } from './Componentes/Cafetito/consulta-qr-transportista/consulta-qr-transportista.component';
 import { TransportistasComponent } from './Componentes/accounts/transportistas/transportistas.component';
-import { ModalQrComponent } from './Componentes/accounts/transportistas/modal-qr/modal-qr.component';
+
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import { GaritaComponent } from './Componentes/accounts/garita/garita.component';
+import { ModalQrComponent } from './Componentes/accounts/modal-qr/modal-qr.component';
+import { ReporteriaEstadosCuentasComponent } from './Componentes/Cafetito/reporteria-estados-cuentas/reporteria-estados-cuentas.component';
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { GaritaComponent } from './Componentes/accounts/garita/garita.component'
     ModalQrComponent,
     ConsultaQrTransportistaComponent,
     GaritaComponent,
+    ReporteriaEstadosCuentasComponent,
 
   ],
   imports: [

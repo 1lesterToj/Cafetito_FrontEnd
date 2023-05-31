@@ -1,0 +1,69 @@
+<div *ngIf="viewSpinner" class="row">
+    <app-generic-spinner></app-generic-spinner>
+</div>
+
+<app-nav-p></app-nav-p>
+<!-- Page Content -->
+<div *ngIf="!viewSpinner" class="container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <div class="row">
+                <div class="col-10">
+                    <h1 class="fw-light">Reporte de cuentas</h1>
+                </div>
+               
+            </div>
+            <hr>
+            <!-- SECCION DE FILTRO PARA BUSCAR -->
+            <div class="col align-self-center">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="fechaDesde">Fecha desde: </label>
+                                <input type="date" class="form-control" id="fechaDesde" placeholder="Ingrese fecha"
+                                    required [(ngModel)]="fechaDesde" [ngModelOptions]="{standalone: true}"
+                                    [max]="getMaxDate()">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="cantidadParcialidades">Fecha hasta: </label>
+                                <input type="date" class="form-control" id="fechaHasta" placeholder="Ingrese fecha"
+                                    required [(ngModel)]="fechaHasta" [ngModelOptions]="{standalone: true}"
+                                    [max]="getMaxDate()">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="pesajetotal">Estado: </label>
+                                <select class="form-control" matNativeControl required [(ngModel)]="estado"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option></option>
+                                    <option value="{{item.id}}" *ngFor="let item of estados; let indice=index">
+                                        {{item.valor}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-2 text-center">
+                            <button (click)="consultarCuentas()" type="submit"
+                                class="btn btn-primary mx-2">Buscar</button>
+                            <button (click)="limpiar()" type="submit" class="btn btn-danger">Limpiar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- FIN SECCION DE FILTRO PARA BUSCAR -->
+
+            <app-generic-table [tableColumns]="tableCols" [headerText]="hText" [parentComp]="'sb-charts'"
+                [tableData]="tableData" *ngIf="viewTable"></app-generic-table>
+        </div>
+
+    </div>
+</div>

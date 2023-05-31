@@ -1,58 +1,86 @@
 <!-- Tabla Generica -->
 <div class="table-responsive my-5">
-    <table mat-table [dataSource]="tableDataSrc" matSort matSortDisabled style="width: 100%" class="table table-bordered">
+    <table mat-table [dataSource]="tableDataSrc" matSort matSortDisabled style="width: 100%"
+        class="table table-bordered">
         <ng-container *ngFor="let col of tableCols; index as i">
             <ng-container matColumnDef="{{ col }}">
                 <!-- Titulo de columnas para bandeja revisor-->
                 <div *ngIf="parentComp === 'sb-charts' || parentComp === 'app-parent-account'">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-dark text-uppercase">{{ headerText[i]}}</th>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-dark text-uppercase">{{
+                        headerText[i]}}</th>
                 </div>
-                <td mat-cell *matCellDef="let profile" class="text-center bg-white" style="color:black">{{ profile[col] }}
+                <td mat-cell *matCellDef="let profile" class="text-center bg-white" style="color:black">{{ profile[col]
+                    }}
 
                     <div *ngIf="col === 'accionParcialidad'">
                         <section class="example-section">
-                            <button [disabled]="profile['estado']"  (click)="saveParcialidad(profile['numerocuenta'], profile['nit_productor'])" type="button" class="btn btn-dark mt-1">Agregar Parcialidad</button>
+                            <button [disabled]="profile['estado']"
+                                (click)="saveParcialidad(profile['numerocuenta'], profile['nit_productor'])"
+                                type="button" class="btn btn-dark mt-1">Agregar Parcialidad</button>
                         </section>
                     </div>
 
                     <div *ngIf="col === 'accionAgregar'">
                         <section class="example-section">
-                            <button (click)="accionParcialidad(profile['noCuenta'], profile['nitProductor'],profile['pesajeTotalKg'], profile['tipoCafe'])"
-                            type="button" class="btn btn-dark mt-1">Accion</button>
+                            <button
+                                (click)="accionParcialidad(profile['noCuenta'], profile['nitProductor'],profile['pesajeTotalKg'], profile['tipoCafe'])"
+                                type="button" class="btn btn-dark mt-1">Accion</button>
                         </section>
                     </div>
 
+                    <div *ngIf="col === 'jsonAnexo' && (profile['jsonPdf']) != null">
+                        <section class="example-section">
+                            <a (click)="descargarPDF(profile['jsonPdf'])" mat-icon-button data-toggle="tooltip"
+                                data-placement="top" title="Descargar PDF">
+                                <mat-icon style="font-size: 2rem; color: red;">picture_as_pdf</mat-icon>
+                            </a>
+                        </section>
+                    </div>
+
+                    <div *ngIf="col === 'jsonAnexo' && (profile['jsonPdf']) == null">
+                        <section class="example-section">
+                            <a mat-icon-button data-toggle="tooltip" data-placement="top"
+                                title="No se puede visualizar">
+                                <mat-icon style="font-size: 2rem; color: red;">visibility_off</mat-icon>
+                            </a>
+                        </section>
+                    </div>
+
+
+
                     <div *ngIf="col === 'accionPesar'">
                         <section class="example-section">
-                           <!--  <button (click)="accionPeso(profile['idParcialidad'], profile['noCuenta'], profile['nitProductor'])" type="button"
+                            <!--  <button (click)="accionPeso(profile['idParcialidad'], profile['noCuenta'], profile['nitProductor'])" type="button"
                                 class="btn btn-dark mt-1">Accion</button> -->
 
-                                <div class="row">
-                                    <div class="col">
-                                        <a mat-icon-button (click)="accionPeso(profile['idParcialidad'], profile['noCuenta'], profile['nitProductor']) " data-toggle="tooltip" data-placement="top" title="cargar peso">
-                                            <mat-icon style="font-size: 1.5rem; color: rgb(24, 5, 5);">ios_share</mat-icon>
-                                        </a>
-                                    </div>
-                                  <!--   <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <a mat-icon-button
+                                        (click)="accionPeso(profile['idParcialidad'], profile['noCuenta'], profile['nitProductor']) "
+                                        data-toggle="tooltip" data-placement="top" title="cargar peso">
+                                        <mat-icon style="font-size: 1.5rem; color: rgb(24, 5, 5);">ios_share</mat-icon>
+                                    </a>
+                                </div>
+                                <!--   <div class="col">
                                         <a mat-icon-button (click)="accionPeso(profile['idParcialidad'], profile['noCuenta'], profile['nitProductor'])">
                                             <mat-icon style="font-size: 1.5rem; color: red;">ios_share</mat-icon>
                                         </a>
                                     </div> -->
-                                </div>
+                            </div>
                         </section>
                     </div>
 
                     <div *ngIf="col === 'accionTolerancia'">
                         <section class="example-section">
-                            <button (click)="validarTolerancia(profile['noCuenta'])"
-                            type="button" class="btn btn-dark mt-1">Accion</button>
+                            <button (click)="validarTolerancia(profile['noCuenta'])" type="button"
+                                class="btn btn-dark mt-1">Accion</button>
                         </section>
                     </div>
 
                     <div *ngIf="col === 'accionQr'">
                         <section class="example-section">
                             <button (click)="accionQr(profile['licenciaTransportista'], profile['nombreTransportista'])"
-                            type="button" class="btn btn-dark mt-1">Accion</button>
+                                type="button" class="btn btn-dark mt-1">Accion</button>
                         </section>
                     </div>
 

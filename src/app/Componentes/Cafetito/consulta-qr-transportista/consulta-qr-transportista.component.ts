@@ -20,17 +20,26 @@ export class ConsultaQrTransportistaComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this._route.params.subscribe(async (params: Params) => {
-      this.parametro = params['licencia'];
-      console.log("PARAMETRO ****", this.parametro);
+      const desencriptar$ = this.service.getDencriptar(params['licencia']);
+      await firstValueFrom(desencriptar$)
+        .then(async res => {
+          this.parametro = res;
+          console.log("PARAMETRO ****", this.parametro);
+
+          const roles = localStorage.getItem('roles');
+          if (roles == 'ROLE_GARITA') {
+            await this.getDataTransportista(this.parametro);
+          } else {
+            await this.notificaciones.notificacionGenerica('NO CUENTA CON PERMISOS PARA ESTA SOLICITUD', 'warning');
+            this.service.logout();
+          }
+        })
+        .catch(err => {
+          this.notificaciones.errorControlado(err);
+        })
 
     })
-    const roles = localStorage.getItem('roles');
-      if (roles == 'ROLE_GARITA') {
-      await this.getDataTransportista(this.parametro);
-    } else {
-      await this.notificaciones.notificacionGenerica('NO CUENTA CON PERMISOS PARA ESTA SOLICITUD', 'warning');
-      this.service.logout();
-    }
+
 
   }
 

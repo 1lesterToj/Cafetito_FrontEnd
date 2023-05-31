@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GeneralServiceService } from 'src/app/Core/services/general-service.service';
 import { GenericNotification } from 'src/app/shared/notificaciones';
 import { firstValueFrom } from 'rxjs';
+import { estados } from 'src/app/shared/estados.interface';
+import { VariableGlobal } from 'src/app/shared/variable-global';
 
 @Component({
   selector: 'app-form-create-child',
@@ -18,15 +20,29 @@ export class FormCreateChildComponent implements OnInit {
   cantidadParcialidades!: any;
   viewTable: boolean = false;
   viewSpinner: boolean = true;
-  tableCols: string[] = ['contador', 'numerocuenta', 'nit_productor', 'cantidadP', 'pesajeT', 'tipoC', 'accionParcialidad'];//variables tabla operador
-  hText: string[] = ['ID.', 'Número de cuenta', 'NIT de productor', 'Cantidad de parcialidades', 'Pesaje total', 'Tipo de café', 'Parcialidad'];//encabezado tabla operador
+  tableCols: string[] = ['contador', 'numerocuenta', 'nit_productor', 'cantidadP', 'pesajeT', 'tipoC', 'estadoCuenta', 'accionParcialidad'];//variables tabla operador
+  hText: string[] = ['ID.', 'Número de cuenta', 'NIT de productor', 'Cantidad de parcialidades', 'Pesaje total', 'Tipo de café', 'Estado', 'Parcialidad'];//encabezado tabla operador
   tableData: {}[] = [{}];
-
+  /*   estados: estados[] = [
+      { id: 1, valor: 'SOLICITUD DE CUENTA' },
+      { id: 2, valor: 'CUENTA CREADA' },
+      { id: 3, valor: 'CUENTA ABIERTA' },
+      { id: 4, valor: 'PESAJE INICIADO' },
+      { id: 5, valor: 'PESAJE FINALIZADO' },
+      { id: 6, valor: 'CUENTA CERRADA' },
+      { id: 7, valor: 'CUENTA CONFIRMADA' },
+      { id: 8, valor: 'CUENTA RECHAZADA' },
+      { id: 9, valor: 'CUENTA APROBADA' },
+    ];
+   */
   constructor(private servicio: GeneralServiceService,
-    private notificaciones: GenericNotification,) { }
+    private notificaciones: GenericNotification,
+    private variableGlobal: VariableGlobal) { }
 
   async ngOnInit(): Promise<void> {
     await this.getDataClient();
+
+
   }
 
   async saveAccount() {
@@ -73,19 +89,30 @@ export class FormCreateChildComponent implements OnInit {
           .then(res => {
             console.log('CUENTAS DEL USUARIO LOGUEADO>>', res)
             let cuentasLista: any = [];
-            let estadoTemp : boolean = false;
+            let estadoTemp: boolean = false;
+            let datos: any;
+            let valorEstadoTemp: string;
             res.data.forEach(async (element: any, index: any) => {
-              if(element.estado == 1){
-                  estadoTemp = true;
+              datos = element;
+              if (element.estado == 1) {
+                estadoTemp = true;
               }
+
+              this.variableGlobal.estados.forEach(async (element: any) => {
+                if (datos.estado == element.id) {
+                  valorEstadoTemp = element.valor;
+                }
+              })
+
               await cuentasLista.push({
                 contador: index + +1,
-                numerocuenta: element.noCuenta,
-                nit_productor: element.nitProductor,
-                cantidadP: element.cantidadParcialidades,
-                pesajeT: element.pesajeTotalKg,
-                tipoC: element.tipoCafe,
-                estado: estadoTemp
+                numerocuenta: datos.noCuenta,
+                nit_productor: datos.nitProductor,
+                cantidadP: datos.cantidadParcialidades,
+                pesajeT: datos.pesajeTotalKg,
+                tipoC: datos.tipoCafe,
+                estado: estadoTemp,
+                estadoCuenta: valorEstadoTemp
               })
               this.tableData = cuentasLista;
             });

@@ -8,6 +8,11 @@ const URL_USUARIOS = environment.BASE_API + '/usuarios';
 const ULR_PARCIALIDADES = environment.BASE_API + '/parcialidades';
 const URL_TRANSPORTISTAS = environment.BASE_API + '/transportista/transporte';
 const ULR_TRANSPORTISTA = environment.BASE_API + '/transportista';
+const URL_ENCRIPTAR = environment.BASE_API + '/utils';
+const ULR_REPORTERIA = environment.BASE_API + '/reporteria';
+
+
+
 
 
 @Injectable({
@@ -129,6 +134,21 @@ export class GeneralServiceService {
 
   getTransportistaQR(data: any) {
     return this.http.post<any>(ULR_TRANSPORTISTA + '/getTransportistaQR', data)
+  };
+
+  getEncriptar(data: string) {
+    return this.http.get<any>(`${URL_ENCRIPTAR}/EncriptarTexto/${data}`,
+      this.generateHeaders(true));
+  };
+
+  getDencriptar(data: any) {
+    return this.http.get<any>(`${URL_ENCRIPTAR}/desEncriptarTexto/${data}`,
+      this.generateHeaders(true));
+  };
+
+  getCuentas(fechaDesde: any, fechaHasta: any, estado: any) {
+    return this.http.get<any>(`${ULR_REPORTERIA}/cuentasByFecha/${fechaDesde}/${fechaHasta}/${estado}`,
+      this.generateHeaders(true));
   };
 
 }
