@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
 
     } else if (this.roles == 'ROLE_PESO_CABAL'){
       this.pesoCabal = true;
+
     }else if (this.roles == 'ROLE_GARITA'){
       this.garita = true;
     }
