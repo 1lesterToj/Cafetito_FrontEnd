@@ -61,4 +61,12 @@ export class ConsultaQrTransportistaComponent implements OnInit {
       })
   }
 
+  autorizarLicencia() {
+    /**
+     * METODO PARA AUTORIZAR
+     */
+    // this.dataUser
+
+  }
+
 }
