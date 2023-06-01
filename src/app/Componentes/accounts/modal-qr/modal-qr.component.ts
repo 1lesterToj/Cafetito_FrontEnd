@@ -14,7 +14,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class ModalQrComponent implements OnInit {
 
-  url = 'https://cafetito-front-zd5nmf9jt-1lestertoj.vercel.app/loginpg/';
+  url = 'https://cafetito-front-nkkbcvi8h-1lestertoj.vercel.app/loginpg/';
   profile = '';// SIRVE PARA CONCATENAR ALGO DESPUES DE LA DIAGONAL
   elementType = NgxQrcodeElementTypes.URL;
   errorCorrectionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
