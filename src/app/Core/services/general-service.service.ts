@@ -151,4 +151,9 @@ export class GeneralServiceService {
       this.generateHeaders(true));
   };
 
+  postAutorizaciones(idParcialidad: any, usuario: any) {
+    return this.http.post<any>(`${ULR_PARCIALIDADES}/AutorizarIngresoParcialidad/${idParcialidad}/${usuario}`,
+      this.generateHeaders(true));
+  };
+
 }

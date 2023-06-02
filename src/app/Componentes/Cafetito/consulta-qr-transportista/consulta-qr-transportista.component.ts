@@ -13,6 +13,7 @@ export class ConsultaQrTransportistaComponent implements OnInit {
   parametro !: string | number;
   dataUser!: any;
   viewHtml: boolean = false;
+  botonAutorizar: boolean = false;
   constructor(private _route: ActivatedRoute,
     private service: GeneralServiceService,
     private notificaciones: GenericNotification) { }
@@ -52,7 +53,12 @@ export class ConsultaQrTransportistaComponent implements OnInit {
     await firstValueFrom(getTransportistaQR$)
       .then(res => {
         this.dataUser = res.data[0];
-        console.log("DATAAA>>", this.dataUser)
+
+
+        if (this.dataUser.id_parcialidad == null) {
+          this.botonAutorizar = true;
+
+        }
         this.viewHtml = true;
       })
       .catch(async err => {
@@ -61,11 +67,22 @@ export class ConsultaQrTransportistaComponent implements OnInit {
       })
   }
 
-  autorizarLicencia() {
+  async autorizarLicencia() {
     /**
      * METODO PARA AUTORIZAR
      */
     // this.dataUser
+    let usuarioLog = localStorage.getItem('usuario');
+    const postAutorizaciones$ = this.service.postAutorizaciones(this.dataUser.id_parcialidad, usuarioLog);
+    await firstValueFrom(postAutorizaciones$)
+      .then(async res => {
+        await this.notificaciones.notificacionGenerica(res.message, 'success');
+        location.reload();
+      })
+      .then(err => {
+        this.notificaciones.errorControlado(err);
+      })
+
 
   }
 

@@ -91,7 +91,8 @@
             </div>
             <hr>
             <div class="col text-center">
-              <button (click)="autorizarLicencia()" type="submit" class="btn btn-primary mx-2 my-2">Autorizar</button>
+              <button [disabled]="botonAutorizar" (click)="autorizarLicencia()" type="submit"
+                class="btn btn-primary mx-2 my-2">Autorizar</button>
             </div>
           </div>
         </div>
