@@ -10,7 +10,7 @@ export class RevisionPesoComponent implements OnInit {
   tableData: {}[] = [{}];
   viewTable: boolean = false;
   tableCols: string[] = ['contador', 'noCuenta', 'nitProductor', 'licenciaTransportista', 'noPlacaTransporte', 'pesoParcialidadKg', 'accionPesar'];//variables tabla operador
-  hText: string[] = ['ID.', ' Numero de Cuenta', ' NIT Productor', ' Licencia Transportista', ' No. Placa', ' Pero Parcialidad KG', ' Accion'];//encabezado tabla operador
+  hText: string[] = ['ID.', ' Numero de Cuenta', ' NIT Productor', ' Licencia Transportista', ' No. Placa', ' Peso Parcialidad KG', ' Accion'];//encabezado tabla operador
   viewSpinner: boolean = true;
   constructor(
     private servicio: GeneralServiceService,
